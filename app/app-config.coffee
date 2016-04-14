@@ -1,5 +1,6 @@
 
 `import Auth0 from "auth0-js";`
+`import { AUTH0_DOMAIN, AUTH0_CLIENT_ID } from "../core/constants.js"`
 
 'use strict'
 
@@ -7,9 +8,7 @@ config = (
   $locationProvider
   $stateProvider
   authProvider
-  AUTH0_DOMAIN
-  AUTH0_CLIENT_ID
-  ) ->
+) ->
   
   states = {}
 
@@ -111,8 +110,6 @@ config.$inject = [
   '$locationProvider'
   '$stateProvider'
   'authProvider'
-  'AUTH0_DOMAIN'
-  'AUTH0_CLIENT_ID'
 ]
 
 angular.module('accounts').config config

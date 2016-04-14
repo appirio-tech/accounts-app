@@ -1,6 +1,6 @@
 'use strict'
 
-{ TC_JWT, ZENDESK_JWT } = require '../../../core/constants.js'
+{ TC_JWT, ZENDESK_JWT, DOMAIN } = require '../../../core/constants.js'
 { login, socialLogin }  = require '../../../core/auth.js'
 { getToken }            = require '../../../core/token.js'
 
@@ -12,13 +12,13 @@ TCLoginController = (
   $stateParams
   UserService
   Utils
-  Constants) ->
+) ->
   
   vm = this
   vm.loading   = false
   vm.init      = false
 
-  vm.baseUrl = "https://www.#{Constants.DOMAIN}"
+  vm.baseUrl = "https://www.#{DOMAIN}"
   vm.registrationUrl      = vm.baseUrl + '/register/'
   vm.forgotPasswordUrl    = vm.baseUrl + '/reset-password/'
   vm.accountInactiveUrl   = vm.baseUrl + '/account-inactive/'
@@ -145,7 +145,6 @@ TCLoginController.$inject = [
   '$stateParams'
   'UserService'
   'Utils'
-  'Constants'
 ]
 
 angular.module('accounts').controller 'TCLoginController', TCLoginController

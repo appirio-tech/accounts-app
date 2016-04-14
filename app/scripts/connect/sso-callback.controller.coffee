@@ -8,7 +8,6 @@ SSOCallbackController = (
   $log
   $state
   $stateParams
-  API_URL
   Utils) ->
   
   vm = this
@@ -47,7 +46,6 @@ SSOCallbackController.$inject = [
   '$log'
   '$state'
   '$stateParams'
-  'API_URL'
   'Utils'
 ]
 

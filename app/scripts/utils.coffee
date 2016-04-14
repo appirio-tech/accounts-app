@@ -1,16 +1,12 @@
 'use strict'
 
-{ TC_JWT, ZENDESK_JWT } = require '../../core/constants.js'
+{ TC_JWT, ZENDESK_JWT, DOMAIN, ZENDESK_DOMAIN } = require '../../core/constants.js'
 { getToken }            = require '../../core/token.js'
 
 Utils = (
   $log
   $window
-  API_URL
-  AUTH0_DOMAIN
-  AUTH0_CLIENT_ID
-  Constants
-  ) ->
+) ->
 
   # returns Auth0 connection name for password login
   getLoginConnection = (userId) ->
@@ -62,9 +58,9 @@ Utils = (
   generateSSOUrl = (org, callbackUrl, state) ->
     apiUrl = API_URL.replace 'api-work', 'api'
     [
-      "https://#{AUTH0_DOMAIN}/authorize?"
+      "https://#{Contants.AUTH0_DOMAIN}/authorize?"
       "response_type=token"
-      "&client_id=#{AUTH0_CLIENT_ID}"
+      "&client_id=#{Contants.AUTH0_CLIENT_ID}"
       "&connection=#{org}"
       "&redirect_uri=#{encodeURIComponent(callbackUrl)}"
       "&state=#{encodeURIComponent(state)}"
@@ -85,7 +81,7 @@ Utils = (
   
   # generate URL to return back to Zendesk after authentication
   generateZendeskReturnUrl = (returnToUrl) ->
-    return "https://#{Constants.ZENDESK_DOMAIN}/access/jwt?jwt=#{getToken(ZENDESK_JWT)}&return_to=#{returnToUrl}"
+    return "https://#{ZENDESK_DOMAIN}/access/jwt?jwt=#{getToken(ZENDESK_JWT)}&return_to=#{returnToUrl}"
   
   # validate
   validateUrl = (returnUrlBase) ->
@@ -96,7 +92,7 @@ Utils = (
     if parser
       parser.href = returnUrlBase
       hostname = parser.hostname.toLowerCase()
-      return hostname.endsWith(Constants.DOMAIN) || hostname.endsWith(Constants.ZENDESK_DOMAIN)
+      return hostname.endsWith(DOMAIN) || hostname.endsWith(ZENDESK_DOMAIN)
     false
 
   # porting from Helpers in topcoder-app
@@ -119,10 +115,6 @@ Utils = (
 Utils.$inject = [
   '$log'
   '$window'
-  'API_URL'
-  'AUTH0_DOMAIN'
-  'AUTH0_CLIENT_ID'
-  'Constants'
 ]
 
 angular.module('accounts').factory 'Utils', Utils

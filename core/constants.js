@@ -9,6 +9,8 @@ export const API_URL = process.env.API_URL
 export const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN
 export const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID
 export const CONNECTOR_URL = process.env.CONNECTOR_URL
+export const DOMAIN = process.env.DOMAIN
+export const ZENDESK_DOMAIN = process.env.ZENDESK_DOMAIN
 
 export const GET_TOKEN_REQUEST = 'GET_TOKEN_REQUEST'
 export const GET_TOKEN_SUCCESS = 'GET_TOKEN_SUCCESS'

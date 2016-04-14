@@ -1,13 +1,13 @@
 'use strict'
 
-{ TC_JWT }   = require '../../core/constants.js'
+{ TC_JWT, DOMAIN }   = require '../../core/constants.js'
 { getToken } = require '../../core/token.js'
 
 HomeController = (
   $log
   $state
   $window
-  Constants) ->
+) ->
   
   vm           = this
   vm.title     = 'Home'
@@ -16,7 +16,7 @@ HomeController = (
     unless getToken(TC_JWT)
       $state.go 'MEMBER_LOGIN'
     else
-      $window.location = 'https://www.' + Constants.DOMAIN + '/'
+      $window.location = 'https://www.' + DOMAIN + '/'
     vm
   
   init()
@@ -26,7 +26,6 @@ HomeController.$inject = [
   '$log'
   '$state'
   '$window'
-  'Constants'
 ]
 
 angular.module('accounts').controller 'HomeController', HomeController

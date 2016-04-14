@@ -1,9 +1,10 @@
 'use strict'
 
+`import API_URL from '../../../core/constants.js'`
+
 UserService = (
   $log
   $http
-  API_URL
 ) ->
   # /users/validateEmail
   validateEmail = (email) ->    
@@ -51,7 +52,6 @@ UserService = (
 UserService.$inject = [
   '$log'
   '$http'
-  'API_URL'
 ]
 
 angular.module('accounts').factory 'UserService', UserService

@@ -1,16 +1,16 @@
 'use strict'
 
-{ TC_JWT }   = require '../../../core/constants.js'
+{ TC_JWT, DOMAIN }   = require '../../../core/constants.js'
 { login }    = require '../../../core/auth.js'
 { getToken } = require '../../../core/token.js'
 
 ConnectLoginController = (
-    $log
-    $scope
-    $state
-    $stateParams
-    Utils
-    Constants) ->
+  $log
+  $scope
+  $state
+  $stateParams
+  Utils
+) ->
   
   vm           = this
   vm.username  = ''
@@ -20,7 +20,7 @@ ConnectLoginController = (
   vm.init      = false
   vm.$stateParams = $stateParams
   
-  vm.baseUrl = "https://connect.#{Constants.DOMAIN}"
+  vm.baseUrl = "https://connect.#{DOMAIN}"
   vm.registrationUrl   = vm.baseUrl + '/registration'
   vm.forgotPasswordUrl = vm.baseUrl + '/forgot-password'
   vm.retUrl = if $stateParams.retUrl then decodeURIComponent($stateParams.retUrl) else vm.baseUrl  
@@ -83,7 +83,6 @@ ConnectLoginController.$inject = [
   '$state'
   '$stateParams'
   'Utils'
-  'Constants'
 ]
 
 angular.module('accounts').controller 'ConnectLoginController', ConnectLoginController
