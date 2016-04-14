@@ -1,5 +1,3 @@
-'use strict'
-
 import { TC_JWT, AUTH0_REFRESH, AUTH0_JWT, V2_SSO, V2_COOKIE, ZENDESK_JWT } from './constants.js'
 
 export function clearTokens() {

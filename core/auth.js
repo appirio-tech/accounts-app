@@ -1,5 +1,3 @@
-'use strict'
-
 import replace from 'lodash/replace'
 import get from 'lodash/get'
 import merge from 'lodash/merge'
