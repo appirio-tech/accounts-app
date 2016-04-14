@@ -1,12 +1,13 @@
 'use strict'
 
 { logout } = require '../../core/auth.js'
+{ generateReturnUrl, redirectTo } = require '../../core/url.js'
 
 LogoutController = (
-    $log
-    $state
-    $stateParams
-    Utils) ->
+  $log
+  $state
+  $stateParams
+) ->
   
   vm           = this
   vm.title     = 'Logout'
@@ -21,7 +22,7 @@ LogoutController = (
       $log.debug res
     
     if $stateParams.retUrl
-      Utils.redirectTo Utils.generateReturnUrl(decodeURIComponent($stateParams.retUrl))
+      redirectTo generateReturnUrl(decodeURIComponent($stateParams.retUrl))
     else
       $state.go 'home'
     vm
@@ -32,7 +33,6 @@ LogoutController.$inject = [
   '$log'
   '$state'
   '$stateParams'
-  'Utils'
 ]
 
 angular.module('accounts').controller 'LogoutController', LogoutController

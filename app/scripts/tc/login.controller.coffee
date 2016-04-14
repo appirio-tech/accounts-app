@@ -3,6 +3,8 @@
 { TC_JWT, ZENDESK_JWT, DOMAIN } = require '../../../core/constants.js'
 { login, socialLogin }  = require '../../../core/auth.js'
 { getToken }            = require '../../../core/token.js'
+{ isEmail, setupLoginEventMetrics } = require '../../../core/utils.js'
+{ redirectTo, generateZendeskReturnUrl, generateReturnUrl } = require '../../../core/url.js'
 
 TCLoginController = (
   $log
@@ -11,7 +13,6 @@ TCLoginController = (
   $state
   $stateParams
   UserService
-  Utils
 ) ->
   
   vm = this
@@ -66,25 +67,19 @@ TCLoginController = (
         doLogin(vm.username, vm.currentPassword)
   
   validateUsername = (username) ->
-    validator = if Utils.isEmail(username) then UserService.validateEmail else UserService.validateHandle
+    validator = if isEmail(username) then UserService.validateEmail else UserService.validateHandle
     validator username
       .then (res) ->
         res?.valid
   
   doLogin = (username, password) ->
-    # Auth0 connection
-    # handle: "LDAP", email: "TC-User-Database"
-    conn = Utils.getLoginConnection vm.username
-
     loginOptions =
       username  : username
       password  : password
-      connection: conn
 
     login(loginOptions)
       .then(loginSuccess)
       .catch(loginFailure)
-
 
   loginFailure = (error) ->
     $log.warn(error)
@@ -100,32 +95,31 @@ TCLoginController = (
     else
       vm.loginErrors.WRONG_PASSWORD = true
       vm.password = ''
-    
+
   loginSuccess = ->
     vm.loading = false
-    
+
     # setup login event for analytics tracking
-    Utils.setupLoginEventMetrics(vm.username)
-    
+    setupLoginEventMetrics(vm.username)
+
     if $stateParams.return_to
-      Utils.redirectTo Utils.generateZendeskReturnUrl($stateParams.return_to)
+      redirectTo generateZendeskReturnUrl($stateParams.return_to)
     else if vm.retUrl
-      Utils.redirectTo Utils.generateReturnUrl(vm.retUrl)
+      redirectTo generateReturnUrl(vm.retUrl)
     else
         $state.go 'home'
 
   init = ->
     if getToken(ZENDESK_JWT) && $stateParams.return_to
-      Utils.redirectTo Utils.generateZendeskReturnUrl($stateParams.return_to)
+      redirectTo generateZendeskReturnUrl($stateParams.return_to)
     else if getToken(TC_JWT) && vm.retUrl
-      Utils.redirectTo Utils.generateReturnUrl(vm.retUrl)
+      redirectTo generateReturnUrl(vm.retUrl)
     else if ($stateParams.handle || $stateParams.email) && $stateParams.password
       id = $stateParams.handle || $stateParams.email
       pass = $stateParams.password
       loginOptions =
         username: id
         password: pass
-        connection: Utils.getLoginConnection id
         
       login(loginOptions)
         .then(loginSuccess)
@@ -144,7 +138,6 @@ TCLoginController.$inject = [
   '$state'
   '$stateParams'
   'UserService'
-  'Utils'
 ]
 
 angular.module('accounts').controller 'TCLoginController', TCLoginController

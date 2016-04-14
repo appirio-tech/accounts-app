@@ -3,6 +3,7 @@
 import replace from 'lodash/replace'
 import get from 'lodash/get'
 import merge from 'lodash/merge'
+import { getLoginConnection } from './utils.js'
 import { clearTokens, readCookie, isTokenExpired } from './token.js'
 import { TC_JWT, AUTH0_REFRESH, AUTH0_JWT, ZENDESK_JWT, V2_SSO, V2_COOKIE, API_URL, AUTH0_DOMAIN, AUTH0_CLIENT_ID } from './constants.js'
 import fetch from 'isomorphic-fetch'
@@ -95,6 +96,14 @@ export function logout() {
     .catch(function(error){
       console.error(error)
     })
+}
+
+function setConnection(options) {
+  if (options.connection === undefined) {
+    options.connection = getLoginConnection(options.username)
+  }
+
+  return options
 }
 
 function auth0Signin(options) {
@@ -224,7 +233,8 @@ export function refreshToken() {
 }
 
 export function login(options) {
-  return auth0Signin(options)
+  return setConnection(options)
+    .then(auth0Signin)
     .then(setAuth0Tokens)
     .then(getNewJWT)
     .then(handleAuthResult)

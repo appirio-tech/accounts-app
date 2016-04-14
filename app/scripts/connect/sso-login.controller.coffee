@@ -7,7 +7,7 @@ SSOLoginController = (
   $state
   $stateParams
   $window
-  Utils) ->
+) ->
   
   vm               = this
   vm.loading       = false
@@ -56,7 +56,6 @@ SSOLoginController.$inject = [
   '$state'
   '$stateParams'
   '$window'
-  'Utils'
 ]
 
 angular.module('accounts').controller 'SSOLoginController', SSOLoginController

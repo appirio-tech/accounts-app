@@ -3,12 +3,13 @@
 { TC_JWT }   = require '../../../core/constants.js'
 { login }    = require '../../../core/auth.js'
 { setToken } = require '../../../core/token.js'
+{ generateReturnUrl, redirectTo } = require '../../../core/url.js'
 
 SSOCallbackController = (
   $log
   $state
   $stateParams
-  Utils) ->
+) ->
   
   vm = this
   vm.retUrl = encodeURIComponent($stateParams.retUrl)
@@ -35,7 +36,7 @@ SSOCallbackController = (
   
     setToken(TC_JWT, $stateParams.userJWTToken)
     
-    error = Utils.redirectTo Utils.generateReturnUrl($stateParams.retUrl)
+    error = redirectTo generateReturnUrl($stateParams.retUrl)
     if error
       vm.error = 'Invalid URL is assigned to the return-URL.'
     vm
@@ -46,7 +47,6 @@ SSOCallbackController.$inject = [
   '$log'
   '$state'
   '$stateParams'
-  'Utils'
 ]
 
 angular.module('accounts').controller 'SSOCallbackController', SSOCallbackController

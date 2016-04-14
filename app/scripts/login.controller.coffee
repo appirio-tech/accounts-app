@@ -1,11 +1,13 @@
 'use strict'
 
+`import { isUrl, encodeParams } from '../../core/utils.js'`
+
 LoginController = (
   $log
   $state
   $stateParams
   Constants
-  Utils) ->
+) ->
   
   vm = this
   
@@ -18,7 +20,7 @@ LoginController = (
     
     # checking with return url
     retUrl = $stateParams.retUrl
-    if retUrl && Utils.isUrl retUrl
+    if retUrl && isUrl retUrl
       parser = document?.createElement 'a'
       if parser
         parser.href = retUrl
@@ -28,9 +30,9 @@ LoginController = (
   
   init = ->
     if isConnectLogin()
-      $state.go 'CONNECT_LOGIN', Utils.encodeParams $stateParams
+      $state.go 'CONNECT_LOGIN', encodeParams $stateParams
     else
-      $state.go 'MEMBER_LOGIN', Utils.encodeParams $stateParams      
+      $state.go 'MEMBER_LOGIN', encodeParams $stateParams
     vm
   
   init()
@@ -41,7 +43,6 @@ LoginController.$inject = [
   '$state'
   '$stateParams'
   'Constants'
-  'Utils'
 ]
 
 angular.module('accounts').controller 'LoginController', LoginController
