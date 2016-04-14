@@ -1,5 +1,5 @@
 import replace from 'lodash/replace'
-import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, API_URL } from './constants.js'
+import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, API_URL, DOMAIN, ZENDESK_DOMAIN } from './constants.js'
 
 export function redirectTo(url) {
   if ( !validateUrl(url) ) {
@@ -11,6 +11,12 @@ export function redirectTo(url) {
   console.info('redirect to ' + url)
 
   window.location = url
+}
+
+export function isUrl(value) {
+  const URL_PATTERN = /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?/i;
+
+  return URL_PATTERN.test(value);
 }
 
 export function generateSSOUrl(org, callbackUrl) {
