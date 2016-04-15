@@ -70,6 +70,29 @@ export function getToken() {
   return token
 }
 
+export function getFreshToken() {
+  const currentToken = (localStorage.getItem(TC_JWT) || '').replace(/^"|"$/g, '')
+
+  // If we have no token, short circuit
+  if (!currentToken) {
+    return Promise.reject('No token found')
+  }
+
+  // If the token is still fresh for at least another minute
+  if ( !isTokenExpired(currentToken, 60) ) {
+
+    // If the token will expire in the next 5m, refresh it in the background
+    if ( isTokenExpired(currentToken, 300) ) {
+      refreshToken()
+    }
+
+    return Promise.resolve(currentToken)
+  }
+
+  // If the token is expired, return a promise for a fresh token
+  return refreshToken()
+}
+
 export function logout() {
   
   //var API_URL = "http://local.topcoder-dev.com:8080"  
@@ -208,10 +231,14 @@ function setSSOToken() {
   localStorage.setItem(V2_SSO, readCookie(V2_COOKIE) || '' )
 }
 
-// refreshPromise is needed outside the function scope to allow multiple calls
-// to chain off an existing promise
+// refreshPromise is needed outside the refreshToken scope to allow throttling
+let refreshPromise = null
+
 export function refreshToken() {
-  //var API_URL = "http://local.topcoder-dev.com:8080"
+  if (refreshPromise) {
+    return refreshPromise
+  }
+
   const token = getToken() || ''
   const url = API_URL + '/v3/authorizations/1'
   const config = {
@@ -220,11 +247,13 @@ export function refreshToken() {
     }
   }
 
-  return fetchJSON(url, config)
+  return refreshPromise = fetchJSON(url, config)
     .then( data => {
       // Assign it to local storage
       const newToken = get(data, 'result.content.token')
       localStorage.setItem(TC_JWT, newToken)
+
+      refreshPromise = null
 
       return newToken
     })

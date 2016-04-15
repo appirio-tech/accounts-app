@@ -1,4 +1,4 @@
-import { GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_TOKEN_FAILURE, REFRESH_TOKEN_REQUEST, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, CONNECTOR_URL } from '../core/constants.js'
+import { GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_TOKEN_FAILURE, GET_FRESH_TOKEN_REQUEST, GET_FRESH_TOKEN_SUCCESS, GET_FRESH_TOKEN_FAILURE, REFRESH_TOKEN_REQUEST, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, CONNECTOR_URL } from '../core/constants.js'
 import iframe from './iframe.js'
 
 let loading = new Promise(function(resolve, reject) {
@@ -34,24 +34,11 @@ const proxyCall = function(REQUEST, SUCCESS, FAILURE, params = {}) {
   }
 }
 
-export const getToken = function () {
-  function success(data) {
-    return data.token
-  }
-
-  function failure(error) {
-    return error
-  }
-
-  return proxyCall(GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_TOKEN_FAILURE)
-    .then(success, failure)
-}
-
-export const refreshToken = function () {
-  return proxyCall(REFRESH_TOKEN_REQUEST, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILURE)
+export function getFreshToken() {
+  return proxyCall(GET_FRESH_TOKEN_REQUEST, GET_FRESH_TOKEN_SUCCESS, GET_FRESH_TOKEN_FAILURE)
     .then( data => data.token )
 }
 
-export const logout = function () {
+export function logout() {
   return proxyCall(LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE)
 }

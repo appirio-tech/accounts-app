@@ -1,41 +1,23 @@
-import { GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_TOKEN_FAILURE, REFRESH_TOKEN_REQUEST, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from '../core/constants.js'
-import { getToken, refreshToken, logout } from '../core/auth.js'
-
-window.addEventListener('message', function(e) {
-  if (e.data.type === GET_TOKEN_REQUEST) {
-    console.log('iframe event', e.data)
-    const token = getToken()
-
-    if (token) {
-      e.source.postMessage({
-        type: GET_TOKEN_SUCCESS,
-        token
-      }, e.origin)
-    } else {
-      e.source.postMessage({
-        type: GET_TOKEN_FAILURE
-      }, e.origin)
-    }
-  }
-})
+import { GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_TOKEN_FAILURE, GET_FRESH_TOKEN_REQUEST, GET_FRESH_TOKEN_SUCCESS, GET_FRESH_TOKEN_FAILURE, REFRESH_TOKEN_REQUEST, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from '../core/constants.js'
+import { getToken, getFreshToken, refreshToken, logout } from '../core/auth.js'
 
 window.addEventListener('message', function(e) {
   function success(token) {
     e.source.postMessage({
-      type: REFRESH_TOKEN_SUCCESS,
+      type: GET_FRESH_TOKEN_SUCCESS,
       token
     }, e.origin)
   }
 
   function failure(error) {
     e.source.postMessage({
-      type: REFRESH_TOKEN_FAILURE
+      type: GET_FRESH_TOKEN_FAILURE
     }, e.origin)
   }
 
-  if (e.data.type === REFRESH_TOKEN_REQUEST) {
+  if (e.data.type === GET_FRESH_TOKEN_REQUEST) {
     console.log('iframe event', e.data)
-    refreshToken().then(success, failure)
+    getFreshToken().then(success, failure)
   }
 })
 
