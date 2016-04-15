@@ -101,7 +101,7 @@ function setConnection(options) {
     options.connection = getLoginConnection(options.username)
   }
 
-  return options
+  return Promise.resolve(options)
 }
 
 function auth0Signin(options) {
