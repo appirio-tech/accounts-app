@@ -1,6 +1,6 @@
 {
   "name": "tc-accounts",
-  "description": "Appirio Accounts App",
+  "description": "Topcoder Accounts App",
   "version": "0.0.1",
   "main": "exports.js",
   "scripts": {
