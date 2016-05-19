@@ -18,6 +18,8 @@ RegistrationController = ($state, $stateParams, $scope) ->
     config =
       param:
         handle            : vm.username
+        firstName         : vm.firstName
+        lastName          : vm.lastName
         email             : vm.email
         utmSource         : 'connect'
         credential        :
