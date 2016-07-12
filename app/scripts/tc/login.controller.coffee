@@ -56,8 +56,10 @@ TCLoginController = (
 
     validateUsername(vm.username)
       .then (result) ->
+        # if username/email is available for registration, it means it is a non existant user
         if result
           vm.loginErrors.USERNAME_NONEXISTANT = true
+          vm.loading = false
         else
           doLogin(vm.username, vm.currentPassword)
       .catch (err) ->
