@@ -12,10 +12,6 @@ export const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN
 export const AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID
 export const ZENDESK_DOMAIN = process.env.ZENDESK_DOMAIN
 
-// non interactive auth0 client
-export const AUTH0_NON_INT_CLIENT_ID = process.env.AUTH0_NON_INT_CLIENT_ID
-export const AUTH0_NON_INT_CLIENT_SECRET = process.env.AUTH0_NON_INT_CLIENT_SECRET
-
 export const GET_FRESH_TOKEN_REQUEST = 'GET_FRESH_TOKEN_REQUEST'
 export const GET_FRESH_TOKEN_SUCCESS = 'GET_FRESH_TOKEN_SUCCESS'
 export const GET_FRESH_TOKEN_FAILURE = 'GET_FRESH_TOKEN_FAILURE'

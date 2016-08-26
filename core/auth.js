@@ -2,11 +2,8 @@ import replace from 'lodash/replace'
 import get from 'lodash/get'
 import merge from 'lodash/merge'
 import { getLoginConnection } from './utils.js'
-import { setToken, getToken, decodeToken, clearTokens, isTokenExpired } from './token.js'
-import {
-  V3_JWT, V2_JWT, V2_SSO, AUTH0_REFRESH, AUTH0_JWT, ZENDESK_JWT,
-  API_URL, AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_NON_INT_CLIENT_ID,
-  AUTH0_NON_INT_CLIENT_SECRET } from './constants.js'
+import { setToken, getToken, clearTokens, isTokenExpired } from './token.js'
+import { V3_JWT, V2_JWT, V2_SSO, AUTH0_REFRESH, AUTH0_JWT, ZENDESK_JWT, API_URL, AUTH0_DOMAIN, AUTH0_CLIENT_ID } from './constants.js'
 import fetch from 'isomorphic-fetch'
 import Auth0 from 'auth0-js'
 
@@ -338,43 +335,33 @@ export function socialRegistration(provider, state) {
           }
           console.log(profile)
           console.log(accessToken)
-          extractSocialUserData(profile, accessToken).then(function(socialData) {
-            console.log(socialData)
+          var socialData = extractSocialUserData(profile, accessToken)
+          console.log(socialData)
 
-            validateSocialProfile(socialData.socialUserId, socialData.socialProvider)
-              .then(function(resp) {
-                console.debug(JSON.stringify(resp))
-                if (resp.valid) {
-                  // success
-                  var result = {
-                    status: 'SUCCESS',
-                    data: socialData
-                  }
-                  console.debug('socialRegister Result: ' + JSON.stringify(result))
-                  resolve(result)
-                } else {
-                  if (resp.reasonCode === 'ALREADY_IN_USE') {
-                    console.error('Social handle already exists')
-                    reject({
-                      status: 'SOCIAL_PROFILE_ALREADY_EXISTS'
-                    })
-                  }
+          validateSocialProfile(socialData.socialUserId, socialData.socialProvider)
+            .then(function(resp) {
+              console.debug(JSON.stringify(resp))
+              if (resp.valid) {
+                // success
+                var result = {
+                  status: 'SUCCESS',
+                  data: socialData
                 }
+                console.debug('socialRegister Result: ' + JSON.stringify(result))
+                resolve(result)
+              } else {
+                if (resp.reasonCode === 'ALREADY_IN_USE') {
+                  console.error('Social handle already exists')
+                  reject({
+                    status: 'SOCIAL_PROFILE_ALREADY_EXISTS'
+                  })
+                }
+              }
 
-              })
-              .catch(function(err) {
-                reject({
-                  status: 'FATAL_ERROR'
-                })
-                console.debug(JSON.stringify(err))
-              })
-          })
-          .catch(function(err) {
-            reject({
-              status: 'FATAL_ERROR'
             })
-            console.debug(JSON.stringify(err))
-          })
+            .catch(function(err) {
+              console.debug(JSON.stringify(err))
+            })
         }
       )
     } else {
@@ -388,40 +375,7 @@ export function socialRegistration(provider, state) {
   })
 }
 
-function signinNonInteractiveClient() {
-
-  var url = 'https://' + AUTH0_DOMAIN + '/oauth/token'
-  var options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: {
-      client_id: AUTH0_NON_INT_CLIENT_ID,
-      client_secret: AUTH0_NON_INT_CLIENT_SECRET,
-      audience: 'https://' + AUTH0_DOMAIN +'/api/v2/',
-      grant_type: 'client_credentials'
-    },
-    json: true
-  };
-
-  return fetchJSON(url, options)
-}
-
-function getAuth0User(access_token, userId) {
-  var decodedToken = decodeToken(access_token)
-  var url = 'https://' + AUTH0_DOMAIN + '/api/v2/users/' + userId
-  var options = {
-    method: 'GET',
-    headers: {
-      'Authorization' : 'Bearer ' + access_token,
-      'content-type': 'application/json'
-    },
-    json: true
-  };
-
-  return fetchJSON(url, options)
-}
-
-export function extractSocialUserData(profile, accessToken) {
+function extractSocialUserData(profile, accessToken) {
   var socialProvider = profile.identities[0].connection
   var firstName = '',
     lastName = '',
@@ -475,36 +429,21 @@ export function extractSocialUserData(profile, accessToken) {
 
   var token = accessToken
   var tokenSecret = null
-
-  return new Promise( (resolve, reject) => {
-    signinNonInteractiveClient()
-    .then(function({ access_token }) {
-      getAuth0User(access_token, profile.user_id)
-      .then(function(user) {
-        if (user.identities && user.identities.length > 0) {
-          token = user.identities[0].access_token
-          tokenSecret = user.identities[0].access_token_secret
-        }
-        resolve({
-          socialUserId: socialUserId,
-          username: handle,
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-          socialProfile: profile,
-          socialProvider: socialProvider,
-          accessToken: token,
-          accessTokenSecret : tokenSecret
-        })
-      })
-      .catch(function(err) {
-        reject(err)
-      })
-    })
-    .catch(function(err) {
-      reject(err)
-    })
-  })
+  if (profile.identities && profile.identities.length > 0) {
+    token = profile.identities[0].access_token
+    tokenSecret = profile.identities[0].access_token_secret
+  }
+  return {
+    socialUserId: socialUserId,
+    username: handle,
+    firstname: firstName,
+    lastname: lastName,
+    email: email,
+    socialProfile: profile,
+    socialProvider: socialProvider,
+    accessToken: token,
+    accessTokenSecret : tokenSecret
+  }
 }
 
 export function generateSSOUrl(org, callbackUrl) {
