@@ -24,7 +24,7 @@
         a(href="{{vm.forgotPasswordUrl}}") Forgot your password?
 
       button.action.tc-btn.tc-btn-primary.tc-btn-sm.disabled(type="submit" disabled="disabled" ng-show="!vm.loginForm.username.$valid || vm.loginForm.$pending") Log in
-      button.action.tc-btn.tc-btn-primary.tc-btn-sm(type="submit" ng-show="vm.loginForm.username.$valid && !vm.loginForm.$pending) Log in
+      button.action.tc-btn.tc-btn-primary.tc-btn-sm(type="submit" ng-show="vm.loginForm.username.$valid && !vm.loginForm.$pending") Log in
 
       //- hiding until we have refined sso flow working
       .login-options(ng-hide="true")
