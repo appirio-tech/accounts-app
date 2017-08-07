@@ -8,10 +8,10 @@
     h2 Log in to Topcoder
     .confirmation-block.confirmation-block-md(ng-if="vm.passwordReset") Your password has been updated. Please log in.
     loader(ng-if="vm.loading")
-    form.connect-accounts-form(role="form" novalidate autocomplete="off" ng-submit="vm.submit()" method="post")
+    form.connect-accounts-form(name="vm.loginForm" role="form" novalidate autocomplete="off" ng-submit="vm.submit()" method="post")
       .wrapper
         label Username or email
-        input.input.input-sm(type="text" ng-model="vm.username" required=true autofocus=true ng-class="{ error : vm.loginErrors.USERNAME_NONEXISTANT || vm.loginErrors.ACCOUNT_INACTIVE }")
+        input.input.input-sm(name="username" type="text" ng-model="vm.username" required=true autofocus=true ng-class="{ error : vm.loginErrors.USERNAME_NONEXISTANT || vm.loginErrors.ACCOUNT_INACTIVE }")
         .error-block(ng-if="vm.loginErrors.USERNAME_NONEXISTANT") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
         .error-block(ng-if="vm.loginErrors.ACCOUNT_INACTIVE") Your account is inactive, please contact support for activating it.
 
@@ -23,7 +23,8 @@
       .forgot.small-text
         a(href="{{vm.forgotPasswordUrl}}") Forgot your password?
 
-      button.action.tc-btn.tc-btn-primary.tc-btn-sm(type="submit") Log in
+      button.action.tc-btn.tc-btn-primary.tc-btn-sm.disabled(type="submit" disabled="disabled" ng-show="!vm.loginForm.username.$valid || vm.loginForm.$pending") Log in
+      button.action.tc-btn.tc-btn-primary.tc-btn-sm(type="submit" ng-show="vm.loginForm.username.$valid && !vm.loginForm.$pending") Log in
 
       //- hiding until we have refined sso flow working
       .login-options(ng-hide="true")
