@@ -31,20 +31,20 @@
 
     ul.networks
       li.network.github
-        a.ico(ng-click="vm.socialLogin('github')")
-        span Github
+        a.ico(ng-click="vm.socialLogin('github')", aria-labelledby="aria-github")
+        span(id="aria-github") Github
       li.network.google-plus
-        a.ico(ng-click="vm.socialLogin('google-oauth2')")
-        span Google
+        a.ico(ng-click="vm.socialLogin('google-oauth2')", aria-labelledby="aria-google")
+        span(id="aria-google") Google
       li.network.facebook
-        a.ico(ng-click="vm.socialLogin('facebook')")
-        span Facebook
+        a.ico(ng-click="vm.socialLogin('facebook')", aria-labelledby="aria-facebook")
+        span(id="aria-facebook") Facebook
       li.network.twitter
-        a.ico(ng-click="vm.socialLogin('twitter')")
-        span Twitter
+        a.ico(ng-click="vm.socialLogin('twitter')", aria-labelledby="aria-twitter")
+        span(id="aria-twitter") Twitter
       li.network.sso
-        a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})")
-        span Single Sign On
+        a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})", aria-labelledby="aria-sso")
+        span(id="aria-sso") Single Sign On
 
 p.join-topcoder Not a member yet? &nbsp;
   a(href="{{vm.registrationUrl}}") Join Now
