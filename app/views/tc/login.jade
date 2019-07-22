@@ -42,7 +42,7 @@
       li.network.twitter(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('twitter')")
         span Twitter
-      li.network.sso(tabIndex="0")
+      li.network.sso(tabIndex="0", aria-label="Single Sign On")
         a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})")
         span Single Sign On
 
