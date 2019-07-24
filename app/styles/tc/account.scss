@@ -96,7 +96,7 @@
       }
       span {
         @include font-with-weight('Sofia Pro', 500);
-        color: $accent-gray;
+        color: #6b6b6b;
         cursor: pointer;
         font-size: 10px;
         line-height: 13px;
@@ -115,7 +115,7 @@
     margin-bottom: 40px;
     p {
       @include font-with-weight;
-      color: $accent-gray;
+      color: #6b6b6b;
       font-size: 13px;
       line-height: 22px;
       text-transform: uppercase;
@@ -146,25 +146,19 @@
       }
       .github {
         .ico {
-          background-image: url(../../images/tc/github.svg);
-          background-repeat: no-repeat;
           color: #404041;
         }
       }
       .facebook {
         margin-left: 41px;
         .ico {
-          background-image: url(../../images/tc/facebook.svg);
-          background-repeat: no-repeat;
           color: #0d72b9;
         }
       }
       .google-plus {
         margin-left: 43px;
         .ico {
-          background-image: url(../../images/tc/gplus.svg);
-          background-position: center;
-          background-repeat: no-repeat;
+          padding-top: 10px;
           border: 1px solid #d1d3d4;
           border-radius: 4px;
           color: #ee4036;
@@ -173,16 +167,12 @@
       .twitter {
         margin-left: 40px;
         .ico {
-          background-image: url(../../images/tc/twitter.svg);
-          background-repeat: no-repeat;
           color: #26a9e0;
         }
       }
       .sso {
         margin-left: 22px;
         .ico {
-          background-image: url(../../images/tc/sso.svg);
-          background-repeat: no-repeat;
           color: #000000;
         }
       }
@@ -220,7 +210,7 @@
   background-color: $gray-lighter;
   padding: 20px 30px 20px 30px;
   .copyright-notice {
-    color: $gray-dark;
+    color: #6b6b6b;
   }
 }
 
