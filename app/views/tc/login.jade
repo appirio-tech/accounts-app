@@ -30,19 +30,19 @@
       span Or Log in With
 
     ul.networks
-      li.network.github
+      li.network.github(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('github')")
         span Github
-      li.network.google-plus
+      li.network.google-plus(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('google-oauth2')")
         span Google
-      li.network.facebook
+      li.network.facebook(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('facebook')")
         span Facebook
-      li.network.twitter
+      li.network.twitter(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('twitter')")
         span Twitter
-      li.network.sso
+      li.network.sso(tabIndex="0")
         a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})")
         span Single Sign On
 
