@@ -17,8 +17,8 @@ html(ng-app='accounts')
     ui-view.view-container
 
     div(ui-view="footer", ng-controller="FooterController as vm", ng-hide="hideCommonFooter")
-      .account-footer
+      footer.account-footer(tabindex="-1", onkeydown="return false;")
         a.privacy-policy(ng-href="https://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank")
           | Privacy Policy
-        p.copyright-notice(ng-bind-html="vm.copyrightNotice")
+        p.copyright-notice(ng-bind-html="vm.copyrightNotice", tabindex="-1", onkeydown="return false;")
     include ./views/segment.io.jade
