@@ -95,7 +95,7 @@
   }
   
   .tc-btn.show-password-btn:focus {
-    outline: 2px solid #59a7ff;
+    outline: 2px solid $tc-dark-blue-70;
   }
 
   .tc-btn.loading:enabled, .tc-btn:focus:not(:disabled) {
