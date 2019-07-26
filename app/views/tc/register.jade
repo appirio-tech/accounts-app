@@ -16,7 +16,7 @@
     // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
     input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
-    p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
+    p.form-error(ng-show="vm.errMsg" role="alert") {{vm.errMsg}}
 
     .first-last-names
       input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
@@ -41,7 +41,7 @@
       )
 
       .form-input-error(ng-show="vm.registerForm.country.$dirty && !vm.isValidCountry")
-        p.form-error(ng-show="!vm.isValidCountry") Please choose a country from the list
+        p.form-error(ng-show="!vm.isValidCountry" role="alert") Please choose a country from the list
 
     .section-break
       hr
@@ -61,12 +61,12 @@
         p It can contain letters, numbers, and these characters: -_.{}[]
 
     .form-input-error(ng-if="vm.registerForm.username.$dirty && vm.registerForm.username.$invalid", ng-messages="vm.registerForm.username.$error")
-      p.form-error(ng-message="required") Please enter a username.
-      p.form-error(ng-message="usernameIsFree") {{vm.usernameErrorMessage}}
+      p.form-error(ng-message="required" role="alert") Please enter a username.
+      p.form-error(ng-message="usernameIsFree" role="alert") {{vm.usernameErrorMessage}}
 
-      p.form-error(ng-message="minlength") That username is not the correct length or format.
+      p.form-error(ng-message="minlength" role="alert") That username is not the correct length or format.
 
-      p.form-error(ng-message="maxlength") That username is not the correct length or format.
+      p.form-error(ng-message="maxlength" role="alert") That username is not the correct length or format.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid) }")
       input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
@@ -89,11 +89,11 @@
         p Please use Single Sign On when you log in to Topcoder.
 
     .form-input-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid", ng-messages="vm.registerForm.email.$error")
-      p.form-error(ng-message="emailIsAvailable") {{vm.emailErrorMessage}}
+      p.form-error(ng-message="emailIsAvailable" role="alert") {{vm.emailErrorMessage}}
 
-      p.form-error(ng-message="validEmail") {{vm.emailErrorMessage}}
+      p.form-error(ng-message="validEmail" role="alert") {{vm.emailErrorMessage}}
 
-      p.form-error(ng-message="required") Please enter an email address.
+      p.form-error(ng-message="required" role="alert") Please enter an email address.
 
     .validation-bar
       toggle-password-with-tips(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser", placeholder="Create Password")
