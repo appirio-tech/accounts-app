@@ -1,6 +1,10 @@
 @import 'topcoder/tc-includes';
 
 .register-container {
+  a {
+    text-decoration: underline;
+  }
+
   form {
     display: flex;
     flex-flow: column wrap;
@@ -55,6 +59,12 @@
 
   .login-options .networks .network .ico:focus {
     outline: 3px solid #77A1F8;
+  }
+}
+
+.join-topcoder {
+  a {
+    text-decoration: underline;
   }
 }
 
