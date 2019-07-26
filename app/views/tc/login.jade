@@ -1,4 +1,9 @@
 - var logoMobile = require("../../images/logo_mobile.svg")
+- var logoGithub = require("../../images/tc/github.svg")
+- var logoGooglePlus = require("../../images/tc/gplus.svg")
+- var logoFacebook = require("../../images/tc/facebook.svg")
+- var logoTwitter = require("../../images/tc/twitter.svg")
+- var logoSso = require("../../images/tc/sso.svg")
 
 .login-container
   header
@@ -32,18 +37,23 @@
     ul.networks
       li.network.github(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('github')")
+          img(src=logoGithub, alt="Github Logo")
         span Github
       li.network.google-plus(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('google-oauth2')")
+          img(src=logoGooglePlus, alt="Google Logo")
         span Google
       li.network.facebook(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('facebook')")
+          img(src=logoFacebook, alt="Facebook Logo")
         span Facebook
       li.network.twitter(tabIndex="0")
         a.ico(ng-click="vm.socialLogin('twitter')")
+          img(src=logoTwitter, alt="Twitter Logo")
         span Twitter
       li.network.sso(tabIndex="0")
         a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})")
+          img(src=logoSso, alt="Single Sign On Logo")
         span Single Sign On
 
 p.join-topcoder Not a member yet? &nbsp;
