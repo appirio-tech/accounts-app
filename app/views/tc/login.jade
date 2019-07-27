@@ -36,23 +36,23 @@
 
     ul.networks
       li.network.github(tabIndex="0", title="Login via Github")
-        a.ico(ng-click="vm.socialLogin('github')")
+        a.ico(ng-click="vm.socialLogin('github')", role="link", href="#")
           img(src=logoGithub, alt="Github Logo")
         span Github
       li.network.google-plus(tabIndex="0", title="Login via Google")
-        a.ico(ng-click="vm.socialLogin('google-oauth2')")
+        a.ico(ng-click="vm.socialLogin('google-oauth2')", role="link", href="#")
           img(src=logoGooglePlus, alt="Google Logo")
         span Google
       li.network.facebook(tabIndex="0", title="Login via Facebook")
-        a.ico(ng-click="vm.socialLogin('facebook')")
+        a.ico(ng-click="vm.socialLogin('facebook')", role="link", href="#")
           img(src=logoFacebook, alt="Facebook Logo")
         span Facebook
       li.network.twitter(tabIndex="0", title="Login via Twitter")
-        a.ico(ng-click="vm.socialLogin('twitter')")
+        a.ico(ng-click="vm.socialLogin('twitter')", role="link", href="#")
           img(src=logoTwitter, alt="Twitter Logo")
         span Twitter
       li.network.sso(tabIndex="0", title="Login via Single Sign On")
-        a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})")
+        a.ico(ui-sref="SSO_LOGIN({app:'member',retUrl:vm.$stateParams.retUrl})", role="link", href="#")
           img(src=logoSso, alt="Single Sign On Logo")
         span Single Sign On
 
