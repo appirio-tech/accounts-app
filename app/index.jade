@@ -16,7 +16,7 @@ html(ng-app='accounts')
       .img
     ui-view.view-container
 
-    div(ui-view="footer", ng-controller="FooterController as vm", ng-hide="hideCommonFooter")
+    div(ui-view="footer", ng-controller="FooterController as vm", ng-hide="hideCommonFooter", role="region" aria-label="Footer")
       .account-footer
         a.privacy-policy(ng-href="https://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank")
           | Privacy Policy
