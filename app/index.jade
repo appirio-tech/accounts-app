@@ -5,7 +5,7 @@ html(ng-app='accounts')
     meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     base(href='/')
-    title Login | Topcoder
+    title(ng-bind="pageTitle ? pageTitle + ' | Topcoder' : 'Topcoder'")
     style.
       .ng-hide {
       display: none !important;
