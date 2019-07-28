@@ -1,43 +1,48 @@
 @import 'topcoder/tc-includes';
+@import "../tc-ui-variables";
 
 .bottom-footer {
-	background-color: $gray-darkest;
-	padding: 1px 20px 30px 20px;
+  background-color: $gray-darkest;
+  padding: 1px 20px 30px 20px;
 }
 
 .social-links {
-    font-size: 13px;
-    line-height: 1.2em;
-    text-align: center;
-    font-weight: normal;
-  	margin: 35px 0;
-  	color: #fff;
+  font-size: 13px;
+  line-height: 1.2em;
+  text-align: center;
+  font-weight: normal;
+  margin: 35px 0;
+  color: #fff;
 
-	a {
-		display: inline-block;
-		background-size: contain;
-		background-repeat: no-repeat;
-		margin: 23px 0;
+  a {
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 23px 0;
 
-		+ a {
-			margin-left: 30px;
-		}
-	}
+    + a {
+      margin-left: 30px;
+    }
+  }
 }
 
 .copyright-notice {
-	text-align: center;
+  text-align: center;
   font-size: 12px;
   line-height: 14px;
   color: #656565;
   @include font-with-weight('Sofia Pro', 500);
-	justify-content: center;
-	text-transform: uppercase;
+  justify-content: center;
+  text-transform: uppercase;
 }
 
 .privacy-policy {
-	@extend .copyright-notice;
-	margin-right: 1.0em;
+  @extend .copyright-notice;
+  margin-right: 1.0em;
+}
+
+a.privacy-policy:focus {
+  outline: 2px solid $tc-dark-blue-90;
 }
 
 /*
