@@ -38,6 +38,9 @@
     }
   }
   section.login-options {
+    a:focus {
+      outline: 3px auto $tc-dark-blue-90;
+    }
     @media (max-width: 767px) {
       margin-bottom: 41px;
     }
