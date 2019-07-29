@@ -1,4 +1,4 @@
-@import "../tc-ui-variables";
+@import "../tc-ui-variables.scss";
 
 .connect-accounts-container {
   background: $tc-gray-neutral-light;
@@ -79,7 +79,7 @@
   }
 
   a {
-    color: #006dea;
+    color: $tc-dark-blue-90;
     text-decoration: none;
     outline-width: 3px;
   }

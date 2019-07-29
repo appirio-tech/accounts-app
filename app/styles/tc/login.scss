@@ -21,6 +21,15 @@
       margin-bottom: 20px;
     }
   }
+
+  button[type=submit] {
+    background-color: $tc-dark-blue-110 !important;
+  }
+
+  button[type=submit]:disabled {
+    background-color: $tc-gray-60 !important;
+  }
+
   .problem-signin {
     @include font-with-weight('Merriweather Sans');
     color: #a3a3ae;
