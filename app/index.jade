@@ -1,11 +1,11 @@
 doctype html
-html(ng-app='accounts')
+html(ng-app='accounts', xmlns='http://www.w3.org/1999/xhtml', lang='en', xml:lang='en')
   head
     meta(http-equiv='Content-type', content='text/html; charset=utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
-    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     base(href='/')
-    title Login | Topcoder
+    title(ng-bind="pageTitle ? pageTitle + ' | Topcoder' : 'Topcoder'")
     style.
       .ng-hide {
       display: none !important;
@@ -16,7 +16,7 @@ html(ng-app='accounts')
       .img
     ui-view.view-container
 
-    div(ui-view="footer", ng-controller="FooterController as vm", ng-hide="hideCommonFooter")
+    div(ui-view="footer", ng-controller="FooterController as vm", ng-hide="hideCommonFooter", role="region" aria-label="Footer")
       .account-footer
         a.privacy-policy(ng-href="https://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank")
           | Privacy Policy

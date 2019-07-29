@@ -1,7 +1,10 @@
 @import 'topcoder/tc-includes';
-@import "../tc-ui-variables";
 
 .register-container {
+  a {
+    text-decoration: underline;
+  }
+
   form {
     display: flex;
     flex-flow: column wrap;
@@ -9,10 +12,6 @@
     align-items: center;
     button {
       margin-top: 0;
-      &.disabled {
-        background-color: $tc-gray-65!important;
-        color: $tc-white-cream;
-      }
     }
 
     @media (min-width: 768px) {
@@ -60,6 +59,12 @@
 
   .login-options .networks .network .ico:focus {
     outline: 3px solid #77A1F8;
+  }
+}
+
+.join-topcoder {
+  a {
+    text-decoration: underline;
   }
 }
 
