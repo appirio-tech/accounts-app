@@ -13,7 +13,7 @@ TCLoginController = (
   $stateParams
   UserService
 ) ->
-  
+
   vm = this
   vm.loading   = false
   vm.init      = false
@@ -23,13 +23,13 @@ TCLoginController = (
   vm.forgotPasswordUrl = $state.href('MEMBER_FORGOT_PASSWORD', { absolute: true })
   vm.confirmActivationUrl = $state.href('MEMBER_REGISTRATION_SUCCESS', { absolute: true })
   vm.retUrl = if $stateParams.retUrl then decodeURIComponent($stateParams.retUrl) else vm.baseUrl
-  
+
   vm.$stateParams = $stateParams
-  vm.loginErrors = 
+  vm.loginErrors =
     USERNAME_NONEXISTANT: false
     WRONG_PASSWORD: false
     SOCIAL_LOGIN_ERROR: false
-  
+
   vm.socialLogin = (provider) ->
     # loading
     vm.loading = true
@@ -37,7 +37,7 @@ TCLoginController = (
     vm.loginErrors.USERNAME_NONEXISTANT = false
     vm.loginErrors.WRONG_PASSWORD = false
     vm.loginErrors.SOCIAL_LOGIN_ERROR = false
-    
+
     loginOptions =
       popup     : true
       connection: provider
@@ -45,6 +45,9 @@ TCLoginController = (
     socialLogin(loginOptions)
       .then(loginSuccess)
       .catch(loginFailure)
+
+  vm.sso_login = (params) ->
+    $state.go 'SSO_LOGIN', params
 
   vm.login = ->
     # loading
@@ -65,13 +68,13 @@ TCLoginController = (
       .catch (err) ->
         vm.loginErrors.USERNAME_NONEXISTANT = false
         doLogin(vm.username, vm.currentPassword)
-  
+
   validateUsername = (username) ->
     validator = if isEmail(username) then UserService.validateEmail else UserService.validateHandle
     validator username
       .then (res) ->
         res?.valid
-  
+
   doLogin = (username, password) ->
     loginOptions =
       username  : username
@@ -84,9 +87,9 @@ TCLoginController = (
   loginFailure = (error) ->
     $log.warn(error)
     vm.loading = false
-    
+
     if error?.message?.toLowerCase() == 'account inactive'
-      # redirect to the page to prompt activation 
+      # redirect to the page to prompt activation
       $log.info 'redirect to #{vm.confirmActivationUrl}'
       $window.location = vm.confirmActivationUrl
     else if error?.message?.toLowerCase() == 'user is not registered'
@@ -129,7 +132,7 @@ TCLoginController = (
     else
       getFreshToken().then(getJwtSuccess)
     vm
-  
+
   init()
 
 
