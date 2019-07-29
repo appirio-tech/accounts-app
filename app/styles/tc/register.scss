@@ -1,4 +1,5 @@
 @import 'topcoder/tc-includes';
+@import "../tc-ui-variables";
 
 .register-container {
   a {
@@ -12,6 +13,10 @@
     align-items: center;
     button {
       margin-top: 0;
+      &.disabled {
+        background-color: $tc-gray-70 !important;
+        color: $tc-white-cream;
+      }
     }
 
     @media (min-width: 768px) {
