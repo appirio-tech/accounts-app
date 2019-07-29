@@ -1,4 +1,5 @@
 @import 'topcoder/tc-includes';
+@import '../tc-ui-variables.scss';
 
 .register-container {
   a {
@@ -12,6 +13,10 @@
     align-items: center;
     button {
       margin-top: 0;
+
+      &:focus {
+        outline: 3px solid $tc-dark-blue-70;
+      }
     }
 
     @media (min-width: 768px) {
@@ -56,9 +61,7 @@
       max-width: 180px;
     }
   }
-  .tc-btn:focus {
-    outline: 2px solid $tc-dark-blue-70;
-  }
+
   .login-options .networks .network .ico:focus {
     outline: 3px solid #77A1F8;
   }
