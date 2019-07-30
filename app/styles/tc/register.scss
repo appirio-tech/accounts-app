@@ -1,5 +1,5 @@
 @import 'topcoder/tc-includes';
-@import "../tc-ui-variables";
+@import '../tc-ui-variables.scss';
 
 .register-container {
   a {
@@ -14,6 +14,9 @@
     button {
       margin-top: 0;
       background-color: $tc-dark-blue-90;
+      &:focus {
+        outline: 3px solid $tc-dark-blue-70;
+      }
       &.disabled {
         background-color: $tc-gray-60 !important;
         color: $tc-white-cream;
