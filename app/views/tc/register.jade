@@ -49,9 +49,9 @@
 
       .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength) }")
         input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
-          input(aria-describedby="tp-help-username", aria-required="false", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
+          input(aria-describedby="tp-help-username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="usernameFocusLoss()", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
 
-        .tips.username-tips(id="tp-help-username", ng-show="vm.usernameTips")
+        .tips.username-tips(id="tp-help-username", role="tooltip", ng-show="vm.usernameTips")
           .arrow
           h2 Username Tips:
 
@@ -71,9 +71,9 @@
 
       .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid) }")
         input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
-          input(aria-describedby="tp-help-email", aria-required="false", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
+          input(aria-describedby="tp-help-email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="emailFocusLoss()", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
 
-        .tips.email-tips(id="tp-help-email", ng-show="vm.emailTips")
+        .tips.email-tips(id="tp-help-email", role="tooltip", ng-show="vm.emailTips")
           .arrow
           h2 Email Tips:
 
@@ -99,7 +99,7 @@
       .validation-bar
         toggle-password-with-tips(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser", placeholder="Create Password")
 
-        .tips.password-tips(id="tp-help-password", ng-show="vm.passwordFocus && !vm.ssoForced")
+        .tips.password-tips(id="tp-help-password", role="tooltip", ng-show="vm.passwordFocus && !vm.ssoForced")
           .arrow
           //- h3 Password Tips:
 
