@@ -7,14 +7,14 @@ let url = ''
 let mock = false
 let token = ''
 
-export function configureConnector({connectorUrl, frameId, mockMode, mockToken}) {
+export function configureConnector({connectorUrl, frameId, mockMode, mockToken, frameTitle}) {
   if (mockMode) {
     mock = true
     token = mockToken
   } else if (iframe) {
     console.warn('tc-accounts connector can only be configured once, this request has been ignored.')
   } else {
-    iframe = createFrame(frameId, connectorUrl)
+    iframe = createFrame(frameId, connectorUrl, frameTitle)
     url = connectorUrl 
     
     loading = new Promise( (resolve) => {

@@ -72,6 +72,7 @@ config = (
   
   states['MEMBER_LOGIN'] =
     url: '/member?retUrl&handle&password&return_to&client_id&response_type&state&redirect_uri&scope'
+    title: 'Login'
     controller  : 'TCLoginController as vm'
     template: require('./views/tc/login')()
     public: true
@@ -87,6 +88,7 @@ config = (
   # message      : (optional) A message handed by Identity Service when some error occurs
   states['MEMBER_REGISTRATION'] =
     url: '/member/registration?retUrl&utm_source&utm_medium&utm_campaign&userJWTToken&auth0Jwt&auth0Refresh&message'
+    title: 'Register'
     params: { 'auth0Data', 'regForm' }
     controller  : 'TCRegistrationController as vm'
     template: require('./views/tc/register.jade')()

@@ -9,6 +9,8 @@ run = ($log, $rootScope, $state, $urlRouter, $location) ->
     
     # hide common footer and banner for connect pages to allow new styled footer for connect
     $rootScope.hideCommonFooter = toState.url && toState.url.indexOf('/connect') != -1
+    # page title
+    $rootScope.pageTitle = toState.title
     path = $location.path()
     queryString = ''
     referrer = ''
