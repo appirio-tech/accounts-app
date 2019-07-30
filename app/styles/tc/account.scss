@@ -97,7 +97,7 @@
       }
       span {
         @include font-with-weight('Sofia Pro', 500);
-        color: $accent-gray;
+        color: #6b6b6b;
         cursor: pointer;
         font-size: 10px;
         line-height: 13px;
@@ -116,7 +116,7 @@
     margin-bottom: 40px;
     p {
       @include font-with-weight;
-      color: $accent-gray;
+      color: #6b6b6b;
       font-size: 13px;
       line-height: 22px;
       text-transform: uppercase;
@@ -216,7 +216,7 @@
   background-color: $gray-lighter;
   padding: 20px 30px 20px 30px;
   .copyright-notice {
-    color: $gray-dark;
+    color: #6b6b6b;
   }
 }
 

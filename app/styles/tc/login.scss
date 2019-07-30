@@ -31,13 +31,21 @@
       font-size: 12px;
       margin-bottom: 25px;
       margin-top: 25px;
-
+      color: #006DEA;
       &:focus {
         outline: 3px auto $tc-dark-blue-90;
       }
     }
   }
   section.login-options {
+    a:focus {
+      outline: 3px auto $tc-dark-blue-90;
+    .network {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
     @media (max-width: 767px) {
       margin-bottom: 41px;
     }
