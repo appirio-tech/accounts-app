@@ -1,5 +1,6 @@
 @import 'topcoder/tc-includes';
 @import 'topcoder/tc-forms';
+@import '../tc-ui-variables.scss';
 
 .login-container,
 .register-container,
@@ -191,6 +192,11 @@
   text-transform: uppercase;
   a {
     display: inline;
+    color: #006dea !important;
+    text-decoration: underline;
+    &:focus {
+      outline: 3px auto $tc-dark-blue-90;
+    }
   }
   .redirect {
     width: 111px;
