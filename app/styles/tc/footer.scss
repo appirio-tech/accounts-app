@@ -49,6 +49,10 @@ a.privacy-policy:focus {
   outline: 2px solid $tc-dark-blue-90;
 }
 
+a.privacy-policy:focus{
+  outline: 2px solid $tc-dark-blue-70;
+}
+
 /*
 @media only screen and (max-width : 1024px) {
 	.bottom-footer, .fold-pusher {
