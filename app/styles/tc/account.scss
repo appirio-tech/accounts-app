@@ -191,6 +191,11 @@
   text-transform: uppercase;
   a {
     display: inline;
+    color: $tc-dark-blue-90 !important;
+    text-decoration: underline;
+    &:focus {
+      outline: 3px auto $tc-dark-blue-90;
+    }
   }
   .redirect {
     width: 111px;
