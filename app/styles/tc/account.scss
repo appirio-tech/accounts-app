@@ -114,9 +114,6 @@
   }
   .login-options {
     margin-bottom: 40px;
-    span {
-      text-decoration: underline;
-    }
     p {
       @include font-with-weight;
       color: $tc-gray-60;
@@ -196,7 +193,7 @@
   a {
     display: inline;
     color: $tc-dark-blue-90 !important;
-
+    text-decoration: underline;
     &:focus {
       outline: 3px auto $tc-dark-blue-90;
     }
