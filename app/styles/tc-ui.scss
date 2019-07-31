@@ -94,6 +94,10 @@
     font-weight: inherit;
   }
 
+  .tc-btn.show-password-btn:focus {
+    outline: 2px solid $tc-dark-blue-70;
+  }
+
   .tc-btn.loading:enabled, .tc-btn:focus:not(:disabled) {
     background: $tc-white;
     border: 1px solid $tc-dark-blue-70;
