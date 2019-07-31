@@ -26,7 +26,7 @@
     toggle-password
 
     p.problem-signin
-      a.forgot-password(href="{{vm.forgotPasswordUrl}}") Forgot your password?
+      a.forgot-password(href="{{vm.forgotPasswordUrl}}", aria-label="forgot password") Forgot your password?
 
     button.tc-btn.tc-btn-wide(type="submit", ng-disabled="vm.loginForm.$invalid || vm.loading") Log In
 
