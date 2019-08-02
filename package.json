@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p --bail --progress --build",
     "build:dev": "webpack --bail --progress",
-    "dev": "webpack-dev-server --history-api-fallback --dev --inline --progress --port 3100 --public local.topcoder-dev.com --host 192.168.1.5",
+    "dev": "webpack-dev-server --history-api-fallback --dev --inline --progress --port 3100 --public local.topcoder-dev.com",
     "prod": "webpack-dev-server --history-api-fallback --prod --inline --progress --port 3000",
     "build-connector": "webpack --bail --progress -p --build --config webpack.config.connector.js",
     "build-connector:dev": "webpack --bail --progress --config webpack.config.connector.js"
