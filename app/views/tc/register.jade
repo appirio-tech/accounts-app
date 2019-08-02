@@ -9,10 +9,9 @@
       img(src=logoMobile, alt="Topcoder Logo")
     .arrow
   //- h1 Join the Topcoder technology community to earn, learn, and connect
-  div(role="region", aria-label="Registration Form", style="display: flex;flex-direction: column;")
-    h1 Join Topcoder
+  h1 Join Topcoder
 
-  form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off")
+  form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off" aria-label="Registration")
     label(for="registration") Registration form
       // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
       input(autocomplete="false", name="hidden", type="text", style="display:none;")
