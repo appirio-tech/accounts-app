@@ -4,6 +4,9 @@
 .register-container {
   a {
     text-decoration: underline;
+    &:focus {
+      outline: 2px solid $tc-dark-blue-70;
+    }
   }
 
   form {
