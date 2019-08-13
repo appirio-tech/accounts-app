@@ -62,8 +62,13 @@
     }
   }
 
-  .login-options .networks .network .ico:focus {
-    outline: 3px solid #77A1F8;
+  .login-options .networks .network {
+    span {
+      text-decoration: underline;
+    }
+    .ico:focus {
+      outline: 3px solid #77A1F8;
+    }
   }
 }
 
