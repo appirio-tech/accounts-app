@@ -14,9 +14,9 @@ import { getNewJWT } from '../../../core/auth.js'
 
   angular.module('accounts').controller('TCRegistrationController', TCRegistrationController)
 
-  TCRegistrationController.$inject = ['$log', '$scope', '$state', '$stateParams', 'UserService', 'ISO3166']
+  TCRegistrationController.$inject = ['$log', '$scope', '$state', '$stateParams', 'UserService', 'ISO3166', '$timeout']
 
-  function TCRegistrationController($log, $scope, $state, $stateParams, UserService, ISO3166) {
+  function TCRegistrationController($log, $scope, $state, $stateParams, UserService, ISO3166, $timeout) {
     var vm = this
     vm.registering = false
     // auth0 login data, passed from another states as state param
@@ -57,6 +57,18 @@ import { getNewJWT } from '../../../core/auth.js'
     $scope.$watch('vm.email', function(email) {
       vm.ssoForced = !!(identifySSOProvider(email))     
     })
+
+    $scope.usernameFocusLoss = function () {
+      $timeout(function () {
+        vm.usernameTips = false
+      }, 100);
+    }
+
+    $scope.emailFocusLoss = function () {
+      $timeout(function () {
+        vm.emailTips = false
+      }, 100);
+    }
 
     vm.updateCountry = function (angucompleteCountryObj) {
       var countryCode = _.get(angucompleteCountryObj, 'originalObject.code', undefined)
