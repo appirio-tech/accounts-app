@@ -5,7 +5,9 @@ import angular from 'angular'
 
   angular.module('accounts.directives').directive('togglePasswordWithTips', togglePasswordWithTips)
 
-  function togglePasswordWithTips() {
+  togglePasswordWithTips.$inject = ['$timeout']
+
+  function togglePasswordWithTips($timeout) {
     return {
       restrict: 'E',
       require: '^form',
@@ -46,7 +48,9 @@ import angular from 'angular'
             passwordInput.focus()
           } else {
             // If you are blurring from the password input and clicking anywhere but the checkbox
-            vm.passwordFocus = false
+            $timeout(function () {
+              vm.passwordFocus = false
+            }, 100)
 
             if (vm.password === '' || vm.password === undefined) {
               vm.placeholder = vm.defaultPlaceholder

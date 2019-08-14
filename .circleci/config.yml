@@ -1,100 +1,105 @@
 version: 2
+defaults: &defaults
+    docker:
+      - image: node:5.10.1      
+install_dependency: &install_dependency
+  name: Installation of build and deployment dependencies.
+  command: |
+    set +e
+    apt-get update -y
+    apt-get install g++-4.8  -y
+    apt install awscli -y
+    apt install jq -y
+    chmod 777 /etc/mime.types
+    sed -i 's/^application\/x-font-woff.*/application\/font-woff\t\t\t\twoff/' /etc/mime.types
+    sed -i 's/^image\/vnd.microsoft.icon.*/image\/vnd.microsoft.icon/' /etc/mime.types
+    sed -i 's/^image\/x-icon.*/image\/x-icon\t\t\t\tico/' /etc/mime.types    
+install_deploysuite: &install_deploysuite
+  name: Installation of install_deploysuite.
+  command: |
+    git clone --branch v1.4 https://github.com/topcoder-platform/tc-deploy-scripts ../buildscript
+    cp ./../buildscript/master_deploy.sh .
+    cp ./../buildscript/buildenv.sh .
+    cp ./../buildscript/awsconfiguration.sh .
+restore_cache_settings_for_build: &restore_cache_settings_for_build
+  key: ac-node-modules-{{ checksum "package.json" }}
+save_cache_settings: &save_cache_settings
+  key: ac-node-modules-{{ checksum "package.json" }}
+  paths:
+    - node_modules
+running_npm_build: &running_npm_build
+          name: Running Npm Build
+          command: |
+            source buildenvvar
+            npm rebuild node-sass
+            npm run build
+            npm run build-connector
+            npm test 
+
+builddeploy_steps: &builddeploy_steps
+      - checkout
+      - setup_remote_docker
+      - run: *install_dependency
+      - run: *install_deploysuite
+      - restore_cache: *restore_cache_settings_for_build
+      - run: npm install
+      - save_cache: *save_cache_settings
+      - run: 
+          name: "configuring environment"
+          command: |
+            ./awsconfiguration.sh $DEPLOY_ENV
+            ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-buildvar
+      - run: *running_npm_build          
+      - deploy:
+          name: Running MasterScript.
+          command: |
+            # ./deploy.sh $DEPLOY_ENV 
+            # ./awsconfiguration.sh $DEPLOY_ENV
+            source awsenvconf
+            ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
+            source buildenvvar
+            ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
+
 jobs:
+  # Build & Deploy against development backend
   "build-dev":
-    docker:
-      - image: node:5.10.1
-    steps:
-      - run:
-          name: Installation of build dependencies.
-          command: |
-            set +e
-            apt-get update -y
-            apt-get install g++-4.8  -y
-            apt install awscli -y
-            chmod 777 /etc/mime.types
-            sed -i 's/^application\/x-font-woff.*/application\/font-woff\t\t\t\twoff/' /etc/mime.types
-            sed -i 's/^image\/vnd.microsoft.icon.*/image\/vnd.microsoft.icon/' /etc/mime.types
-            sed -i 's/^image\/x-icon.*/image\/x-icon\t\t\t\tico/' /etc/mime.types			
-      - checkout
-      - restore_cache:
-          key: ac-node-modules-{{ checksum "package.json" }}
-      - run: npm install
-      - save_cache:
-          key: ac-node-modules-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run: npm rebuild node-sass
-      - run: npm run build
-      - run: npm run build-connector
-      - run: npm test
-      - run: ./deploy.sh DEV
+    <<: *defaults
+    environment:
+      DEPLOY_ENV: "DEV"
+      LOGICAL_ENV: "dev"
+      APPNAME: "accounts-app"          
+    steps: *builddeploy_steps
   "build-qa":
-    docker:
-      - image: node:5.10.1
-    steps:
-      - run:
-          name: Installation of build dependencies.
-          command: |
-            apt-get update -y
-            apt-get install g++-4.8  -y
-            apt install awscli -y            
-            chmod 777 /etc/mime.types
-            sed -i 's/^application\/x-font-woff.*/application\/font-woff\t\t\t\twoff/' /etc/mime.types
-            sed -i 's/^image\/vnd.microsoft.icon.*/image\/vnd.microsoft.icon/' /etc/mime.types
-            sed -i 's/^image\/x-icon.*/image\/x-icon\t\t\t\tico/' /etc/mime.types			
-      - checkout
-      - restore_cache:
-          key: ac-node-modules-{{ checksum "package.json" }}
-      - run: npm install
-      - save_cache:
-          key: ac-node-modules-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run: npm run build
-      - run: npm run build-connector
-      - run: npm test
-      - run: ./deploy.sh QA
+    <<: *defaults
+    environment:
+      DEPLOY_ENV: "QA"
+      LOGICAL_ENV: "qa"
+      APPNAME: "accounts-app"          
+    steps: *builddeploy_steps
   "build-prod":
-    docker:
-      - image: node:5.10.1
-    steps:
-      - run:
-          name: Installation of build dependencies.
-          command: |
-            set +e
-            apt-get update -y
-            apt-get install g++-4.8  -y
-            apt install awscli -y            
-            chmod 777 /etc/mime.types
-            sed -i 's/^application\/x-font-woff.*/application\/font-woff\t\t\t\twoff/' /etc/mime.types
-            sed -i 's/^image\/vnd.microsoft.icon.*/image\/vnd.microsoft.icon/' /etc/mime.types
-            sed -i 's/^image\/x-icon.*/image\/x-icon\t\t\t\tico/' /etc/mime.types			
-      - checkout
-      - restore_cache:
-          key: ac-node-modules-{{ checksum "package.json" }}
-      - run: npm install
-      - save_cache:
-          key: ac-node-modules-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run: npm rebuild node-sass            
-      - run: npm run build
-      - run: npm run build-connector
-      - run: npm test
-      - run: ./deploy.sh PROD      
+    <<: *defaults
+    environment:
+      DEPLOY_ENV: "PROD"
+      LOGICAL_ENV: "prod"
+      APPNAME: "accounts-app"        
+    steps: *builddeploy_steps
+
 workflows:
   version: 2
   build:
     jobs:
       - build-dev:
+          context : org-global
           filters:
             branches:
               only: [ dev, dev-circleci2 ]
       - build-qa:
+          context : org-global
           filters:
             branches:
               only: qa
       - build-prod:
+          context : org-global
           filters:
             branches:
-              only: master              
+              only: master  
