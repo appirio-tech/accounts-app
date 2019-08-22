@@ -21,7 +21,8 @@
       p.form-error(ng-message="SOCIAL_LOGIN_ERROR" role="alert") User with that profile is not registered.
 
     div.validation-bar(ng-class="{'error-bar': vm.loginErrors.USERNAME_NONEXISTANT}")
-      input(ng-model="vm.username", placeholder="Username or Email", type="text", required, aria-invalid="false") 
+      label(for="username") USERNAME OR EMAIL
+      input(ng-model="vm.username", id="username", placeholder="Username or Email", type="text", required, aria-invalid="false") 
 
     toggle-password
 
