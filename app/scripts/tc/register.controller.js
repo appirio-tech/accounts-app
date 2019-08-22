@@ -70,6 +70,18 @@ import { getNewJWT } from '../../../core/auth.js'
       }, 100);
     }
 
+    // A hack to make input field compatible with screen readers
+    vm.countryDefaultPlaceholder = 'Country'
+    vm.countryPlaceholder = vm.countryDefaultPlaceholder
+
+    vm.clearCountryPlaceholder = function() {
+      vm.countryPlaceholder = ''
+    }
+
+    vm.setCountryPlaceholder = function () {
+      vm.countryPlaceholder = vm.countryDefaultPlaceholder
+    }
+
     vm.updateCountry = function (angucompleteCountryObj) {
       var countryCode = _.get(angucompleteCountryObj, 'originalObject.code', undefined)
 
