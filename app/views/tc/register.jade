@@ -12,7 +12,7 @@
   h1 Join Topcoder
 
   form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off" aria-label="Registration")
-    label(for="registration") Registration form
+      label(for="registration") Registration form
       // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
       input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
@@ -20,12 +20,15 @@
 
       .first-last-names
         input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
-          input(ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
+          label(for="firstname") First Name
+          input(ng-model="vm.firstname", maxlength="64", id="firstname", name="firstname", placeholder="First Name", type="text", required)
 
         input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
-          input(ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
+          label(for="lastname") Last Name
+          input(ng-model="vm.lastname", maxlength="64", id="lastname", name="lastname", placeholder="Last Name", type="text", required)
 
-      .country-dropdown
+      .country-dropdown#country
+        label(for="country") Country
         angucomplete-alt(
           input-name="country",
           placeholder="Country",
@@ -48,7 +51,8 @@
 
       .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength) }")
         input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
-          input(aria-describedby="tp-help-username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="usernameFocusLoss()", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
+          label(for="username") Username
+          input#username(aria-describedby="tp-help-username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="usernameFocusLoss()", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
 
         .tips.username-tips(id="tp-help-username", role="tooltip", ng-show="vm.usernameTips")
           .arrow
@@ -70,7 +74,8 @@
 
       .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid) }")
         input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
-          input(aria-describedby="tp-help-email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="emailFocusLoss()", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
+          label(for="email") Enter Your Email
+          input#email(aria-describedby="tp-help-email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="emailFocusLoss()", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
 
         .tips.email-tips(id="tp-help-email", role="tooltip", ng-show="vm.emailTips")
           .arrow
@@ -96,6 +101,7 @@
         p.form-error(ng-message="required" role="alert") Please enter an email address.
 
       .validation-bar
+        label(for="password-input") Password
         toggle-password-with-tips(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser", placeholder="Create Password")
 
         .tips.password-tips(id="tp-help-password", role="tooltip", ng-show="vm.passwordFocus && !vm.ssoForced")
