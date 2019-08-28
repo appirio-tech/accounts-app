@@ -51,7 +51,7 @@
     }
   }
 
-  .tc-btn-wide {
+  .tc-btn-wide:disabled {
     background: $tc-gray-20;
     color: $tc-gray-80;
   }
