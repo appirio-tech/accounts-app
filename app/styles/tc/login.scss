@@ -59,6 +59,11 @@
       }
     }
   }
+
+  .tc-btn-wide {
+    background: $tc-gray-20;
+    color: $tc-gray-80;
+  }
   section.login-options {
     a:focus {
       outline: 3px auto $tc-dark-blue-90;
