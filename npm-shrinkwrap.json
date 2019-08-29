@@ -485,8 +485,8 @@
       }
     },
     "appirio-tech-react-components": {
-      "version": "github:appirio-tech/react-components#192a7dfbb3a1d3906219cf406a227f59b68afa17",
-      "from": "github:appirio-tech/react-components#192a7dfbb3a1d3906219cf406a227f59b68afa17",
+      "version": "github:appirio-tech/react-components#767db77401edbee8ec6ff955b5a72a51ba93c755",
+      "from": "github:appirio-tech/react-components#767db77401edbee8ec6ff955b5a72a51ba93c755",
       "requires": {
         "appirio-tech-api-schemas": "^5.0.69",
         "appirio-tech-client-app-layer": "^0.1.3",
