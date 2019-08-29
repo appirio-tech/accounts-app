@@ -485,8 +485,8 @@
       }
     },
     "appirio-tech-react-components": {
-      "version": "github:appirio-tech/react-components#756a88eddc944dfef1c244af0dc2891141cf66a8",
-      "from": "github:appirio-tech/react-components#feature/connectv2",
+      "version": "github:appirio-tech/react-components#192a7dfbb3a1d3906219cf406a227f59b68afa17",
+      "from": "github:appirio-tech/react-components#192a7dfbb3a1d3906219cf406a227f59b68afa17",
       "requires": {
         "appirio-tech-api-schemas": "^5.0.69",
         "appirio-tech-client-app-layer": "^0.1.3",
@@ -2927,15 +2927,38 @@
       "integrity": "sha1-qsXDmVIjar5fA3ojSQYLoBsArkg="
     },
     "deep-equal": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-1.0.1.tgz",
-      "integrity": "sha1-9dJgKStmDghO/0zbyfCK0yR0SLU="
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-1.1.0.tgz",
+      "integrity": "sha512-ZbfWJq/wN1Z273o7mUSjILYqehAktR2NVoSrOukDkU9kg2v/Uv89yU4Cvz8seJeAmtN5oqiefKq8FPuXOboqLw==",
+      "requires": {
+        "is-arguments": "^1.0.4",
+        "is-date-object": "^1.0.1",
+        "is-regex": "^1.0.4",
+        "object-is": "^1.0.1",
+        "object-keys": "^1.1.1",
+        "regexp.prototype.flags": "^1.2.0"
+      },
+      "dependencies": {
+        "object-keys": {
+          "version": "1.1.1",
+          "resolved": "https://registry.npmjs.org/object-keys/-/object-keys-1.1.1.tgz",
+          "integrity": "sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA=="
+        }
+      }
     },
     "deep-is": {
       "version": "0.1.3",
       "resolved": "https://registry.npmjs.org/deep-is/-/deep-is-0.1.3.tgz",
       "integrity": "sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=",
       "dev": true
+    },
+    "define-properties": {
+      "version": "1.1.3",
+      "resolved": "https://registry.npmjs.org/define-properties/-/define-properties-1.1.3.tgz",
+      "integrity": "sha512-3MqfYKj2lLzdMSf8ZIZE/V+Zuy+BgD6f164e8K2w7dgnpKArBDerGYpM46IYYcjnkdPNMjPk9A6VFB8+3SKlXQ==",
+      "requires": {
+        "object-keys": "^1.0.12"
+      }
     },
     "defined": {
       "version": "1.0.0",
@@ -4654,8 +4677,7 @@
     "function-bind": {
       "version": "1.1.1",
       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz",
-      "integrity": "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==",
-      "dev": true
+      "integrity": "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
     },
     "gauge": {
       "version": "2.7.4",
@@ -4870,7 +4892,6 @@
       "version": "1.0.3",
       "resolved": "https://registry.npmjs.org/has/-/has-1.0.3.tgz",
       "integrity": "sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==",
-      "dev": true,
       "requires": {
         "function-bind": "^1.1.1"
       }
@@ -5289,6 +5310,11 @@
       "integrity": "sha1-UFMN+4T8yap9vnhS6Do3uTufKqY=",
       "dev": true
     },
+    "is-arguments": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/is-arguments/-/is-arguments-1.0.4.tgz",
+      "integrity": "sha512-xPh0Rmt8NE65sNzvyUmWgI1tz3mKq74lGA0mL8LYZcoIzKOzDh6HmrYm3d18k60nHerC8A9Km8kYu87zfSFnLA=="
+    },
     "is-arrayish": {
       "version": "0.2.1",
       "resolved": "https://registry.npmjs.org/is-arrayish/-/is-arrayish-0.2.1.tgz",
@@ -5317,6 +5343,11 @@
       "requires": {
         "builtin-modules": "^1.0.0"
       }
+    },
+    "is-date-object": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/is-date-object/-/is-date-object-1.0.1.tgz",
+      "integrity": "sha1-mqIOtq7rv/d/vTPnTKAbM1gdOhY="
     },
     "is-dotfile": {
       "version": "1.0.3",
@@ -5468,6 +5499,14 @@
       "resolved": "https://registry.npmjs.org/is-property/-/is-property-1.0.2.tgz",
       "integrity": "sha1-V/4cTkhHTt1lsJkR8msc1Ald2oQ=",
       "dev": true
+    },
+    "is-regex": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/is-regex/-/is-regex-1.0.4.tgz",
+      "integrity": "sha1-VRdIm1RwkbCTDglWVM7SXul+lJE=",
+      "requires": {
+        "has": "^1.0.1"
+      }
     },
     "is-resolvable": {
       "version": "1.1.0",
@@ -5885,9 +5924,9 @@
       }
     },
     "libphonenumber-js": {
-      "version": "1.7.22",
-      "resolved": "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.7.22.tgz",
-      "integrity": "sha512-KCK4874gp640B+d1zjNi2ZiZ3ubEUPH/0B9AwcuhHDVAL6NdthxC8obbdhGlo7FcEpjFVwEMDoHRfi+lI8NM/g==",
+      "version": "1.7.23",
+      "resolved": "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.7.23.tgz",
+      "integrity": "sha512-PoL4q+VyljlBE5VBC0GegDYnBAYPAvoa6uihi5GmqlKGAC3bf4ha4KXiHOl3+6VvClgTnmiqHQUZcj/+SswnCQ==",
       "requires": {
         "minimist": "^1.2.0",
         "xml2js": "^0.4.17"
@@ -6744,11 +6783,15 @@
       "integrity": "sha1-9RV8EWwUVbJDsG7pdwM5LFrYn+w=",
       "dev": true
     },
+    "object-is": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/object-is/-/object-is-1.0.1.tgz",
+      "integrity": "sha1-CqYOyZiaCz7Xlc9NBvYs8a1lObY="
+    },
     "object-keys": {
       "version": "1.0.12",
       "resolved": "https://registry.npmjs.org/object-keys/-/object-keys-1.0.12.tgz",
-      "integrity": "sha512-FTMyFUm2wBcGHnH2eXmz7tC6IwlqQZ6mVZ+6dm6vZ4IQIHjs6FdNsQBuKGPuUUUY6NfJw2PshC08Tn6LzLDOag==",
-      "dev": true
+      "integrity": "sha512-FTMyFUm2wBcGHnH2eXmz7tC6IwlqQZ6mVZ+6dm6vZ4IQIHjs6FdNsQBuKGPuUUUY6NfJw2PshC08Tn6LzLDOag=="
     },
     "object.omit": {
       "version": "2.0.1",
@@ -8620,6 +8663,14 @@
       "dev": true,
       "requires": {
         "is-equal-shallow": "^0.1.3"
+      }
+    },
+    "regexp.prototype.flags": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/regexp.prototype.flags/-/regexp.prototype.flags-1.2.0.tgz",
+      "integrity": "sha512-ztaw4M1VqgMwl9HlPpOuiYgItcHlunW0He2fE6eNfT6E/CF2FtYi9ofOYe4mKntstYk0Fyh/rDRBdS3AnxjlrA==",
+      "requires": {
+        "define-properties": "^1.1.2"
       }
     },
     "regexpu-core": {
