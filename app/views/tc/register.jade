@@ -22,17 +22,19 @@
         .first-last-names
           input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
             label(for="firstname") First Name
-            input(ng-model="vm.firstname", maxlength="64", id="firstname", name="firstname", placeholder="First Name", type="text", required)
+            input(ng-model="vm.firstname", maxlength="64", name="firstname", id="firstname", aria-label="First Name", aria-invalid="false", onblur="this.placeholder='First Name'", onfocus="this.placeholder=''", placeholder="First Name", type="text", required)
 
           input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
             label(for="lastname") Last Name
-            input(ng-model="vm.lastname", maxlength="64", id="lastname", name="lastname", placeholder="Last Name", type="text", required)
+            input(ng-model="vm.lastname", maxlength="64", id="lastname", name="lastname", aria-label="Last Name", aria-invalid="false", onblur="this.placeholder='Last Name'", onfocus="this.placeholder=''", placeholder="Last Name", type="text", required)
 
-        .country-dropdown#country
-          label(for="country") Country
+        .country-dropdown(aria-label="Country")
+          label(for="_value") Country
           angucomplete-alt(
             input-name="country",
-            placeholder="Country",
+            placeholder="{{vm.countryPlaceholder}}",
+            focus-in="vm.clearCountryPlaceholder()"
+            focus-out="vm.setCountryPlaceholder()"
             pause="100",
             selected-object="vm.updateCountry",
             local-data="vm.countries",

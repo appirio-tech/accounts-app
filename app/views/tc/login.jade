@@ -23,7 +23,7 @@
 
       div.validation-bar(ng-class="{'error-bar': vm.loginErrors.USERNAME_NONEXISTANT}")
         label(for="username") USERNAME OR EMAIL
-        input(ng-model="vm.username", id="username", placeholder="Username or Email", type="text", required, aria-invalid="false") 
+        input(ng-model="vm.username", id="username", placeholder="Username or Email", aria-label="Username of Email", onblur="this.placeholder='Username or Email'", onfocus="this.placeholder=''", type="text", required, aria-invalid="false") 
 
       toggle-password
 
