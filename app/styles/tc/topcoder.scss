@@ -195,7 +195,7 @@ body.tc {
     width: 2px;
     left: 1px;
     position: absolute;
-    top: 0;
+    top: 21px;
   }
   &.error-bar:before {
     background-color: $error;
@@ -233,7 +233,7 @@ $tips-background: $gray-lighter;
     padding-bottom: 10px;
     position: absolute;
     text-align: left;
-    top: -10px;
+    top: 10px;
   }
   // The tip container is hidden
   &.ng-hide {
