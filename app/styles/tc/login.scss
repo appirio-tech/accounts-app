@@ -2,6 +2,24 @@
 @import "../tc-ui-variables";
 
 .login-container {
+  .validation-bar {
+    &:before {
+      top: 21px;
+    }
+  }
+  label {
+    @include font-with-weight('Sofia Pro', 500);
+    margin: 5px 0;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    color: $tc-gray-80; 
+    font-size: 10px;
+    line-height: 10px;
+    height: initial;
+    text-align: left;
+  }
+
   form {
     display: flex;
     flex-flow: column wrap;
@@ -36,6 +54,11 @@
         outline: 3px auto $tc-dark-blue-90;
       }
     }
+  }
+
+  .tc-btn-wide:disabled {
+    background: $tc-gray-20;
+    color: $tc-gray-80;
   }
   section.login-options {
     a:focus {

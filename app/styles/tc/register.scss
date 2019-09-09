@@ -2,7 +2,27 @@
 @import '../tc-ui-variables';
 
 .register-container {
+  .validation-bar {
+    &:before {
+      top: 21px;
+    }
+  }
+  label {
+    @include font-with-weight('Sofia Pro', 500);
+    margin: 5px 0;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    color: $tc-gray-80; 
+    text-transform: uppercase;
+    font-size: 10px;
+    line-height: 10px;
+    height: initial;
+    text-align: left;
+  }
+
   a {
+    color: $tc-dark-blue-90;
     text-decoration: underline;
     &:focus {
       outline: 2px solid $tc-dark-blue-70;
@@ -63,7 +83,7 @@
     hr {
       border: none;
       border-bottom: 1px solid $gray-light;
-      margin: 10px auto 20px;
+      margin: 10px auto;
       max-width: 180px;
     }
   }
