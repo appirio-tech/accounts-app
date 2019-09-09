@@ -2,6 +2,11 @@
 @import '../tc-ui-variables';
 
 .register-container {
+  .validation-bar {
+    &:before {
+      top: 21px;
+    }
+  }
   label {
     @include font-with-weight('Sofia Pro', 500);
     margin: 5px 0;
