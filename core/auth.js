@@ -109,14 +109,16 @@ export function getFreshToken() {
 export function logout() {
 
   function killDirectSession(token) {
-    const url = DIRECT_URL + '/logout/'
+    const url = DIRECT_URL + '/logout'
     const config = {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token
       }
     }
-    return fetchJSON(url, config)
+    fetch(url, config).then(function (response) {
+      return response.status;
+    }).catch(function (e) { return e; })
   }
 
   function getJwtSuccess(token) {
