@@ -116,7 +116,7 @@ export function logout() {
         Authorization: 'Bearer ' + token
       }
     }
-    fetch(url, config).then(function (response) {
+    return fetch(url, config).then(function (response) {
       return response.status;
     }).catch(function (e) { return e; })
   }
