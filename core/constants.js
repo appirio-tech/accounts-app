@@ -50,4 +50,3 @@ export const SSO_PROVIDER_DOMAINS_LOCALSIMPLESAML = ['localsimplesaml.com']
 export const SSO_PROVIDER_DOMAINS_ZURICH = ['zurich.com', 'zurichna.com', 'zurich.co.jp','zurich.ie', 'zurich.sg', 'zurich.com.au', 'zurich.ch', 'zurich.com.my']
 
 export const UTM_SOURCE_CONNECT = 'connect'
-export const DIRECT_URL = SCHEME+"://"+DOMAIN+'/direct'
