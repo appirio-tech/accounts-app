@@ -8,7 +8,7 @@ import { V3_JWT, V2_JWT, V2_SSO, AUTH0_REFRESH, AUTH0_JWT, ZENDESK_JWT, API_URL,
   TOPCODER_SSO_PROVIDER, APPIRIO_SSO_PROVIDER, SSO_PROVIDER_DOMAINS, SSO_PROVIDER_DOMAINS_WIPRO,
   SSO_PROVIDER_DOMAINS_APPIRIO, SSO_PROVIDER_DOMAINS_TOPCODER, CREDITSUISSE_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_CREDITSUISSE,
   LOCALSIMPLESAML_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_LOCALSIMPLESAML,
-  ZURICH_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_ZURICH } from './constants.js'
+  ZURICH_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_ZURICH , DIRECT_URL} from './constants.js'
 import fetch from 'isomorphic-fetch'
 import Auth0 from 'auth0-js'
 
@@ -107,6 +107,20 @@ export function getFreshToken() {
 }
 
 export function logout() {
+
+  function killDirectSession(token) {
+    const url = DIRECT_URL + '/logout'
+    const config = {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }
+    fetch(url, config).then(function (response) {
+      return response.status;
+    }).catch(function (e) { return e; })
+  }
+
   function getJwtSuccess(token) {
     clearTokens()
 
@@ -125,7 +139,7 @@ export function logout() {
     console.warn('Failed to get token, assuming we are already logged out')
   }
 
-  return getFreshToken().then(getJwtSuccess, getJwtFailure)
+  return getFreshToken().then(killDirectSession, getJwtSuccess, getJwtFailure)
 }
 
 function setConnection(options) {
