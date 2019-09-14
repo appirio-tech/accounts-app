@@ -195,7 +195,7 @@ body.tc {
     width: 2px;
     left: 1px;
     position: absolute;
-    top: 0;
+    top: 0px;
   }
   &.error-bar:before {
     background-color: $error;
@@ -233,7 +233,7 @@ $tips-background: $gray-lighter;
     padding-bottom: 10px;
     position: absolute;
     text-align: left;
-    top: -10px;
+    top: 10px;
   }
   // The tip container is hidden
   &.ng-hide {
@@ -267,7 +267,7 @@ $tips-background: $gray-lighter;
       }
     }
   }
-  h3 {
+  h2 {
     @include sofia-pro-medium;
     font-size: 14px;
     padding-bottom: 15px;

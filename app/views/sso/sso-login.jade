@@ -18,7 +18,7 @@ main.layout-main.login-reg.flex.center.middle.connect-accounts-container.tc-ui("
             input.input.input-sm(type="text" ng-model="vm.emailOrHandle" required=true placeholder="Email or handle" autofocus=true)
 
             button.action.tc-btn.tc-btn-primary(type="submit" style="margin-bottom:11px") Continue
-          p <a ng-click="vm.showLoginPage()">Back to Login</a>
+          p <a ng-click="vm.showLoginPage()" tabindex="0">Back to Login</a>
 
         p.success(ng-show="vm.success") Redirecting to {{ vm.retUrl }} ...
 

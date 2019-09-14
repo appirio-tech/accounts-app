@@ -75,11 +75,17 @@
 
   p.error {
     text-align: center;
+    color: $tc-red-110;
   }
 
   a {
-    color: #0B71E6;
+    color: #006dea;
     text-decoration: none;
+    outline-width: 3px;
+  }
+
+  a:focus{
+    outline: 2px solid $tc-dark-blue-70;
   }
 
   .small-text {

@@ -1,6 +1,25 @@
 @import 'topcoder/tc-includes';
+@import "../tc-ui-variables";
 
 .login-container {
+  .validation-bar {
+    &:before {
+      top: 21px;
+    }
+  }
+  label {
+    @include font-with-weight('Sofia Pro', 500);
+    margin: 5px 0;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    color: $tc-gray-80; 
+    font-size: 10px;
+    line-height: 10px;
+    height: initial;
+    text-align: left;
+  }
+
   form {
     display: flex;
     flex-flow: column wrap;
@@ -9,6 +28,10 @@
 
     p + button {
       margin-top: 0;
+      
+      &:focus {
+        outline: 3px auto $tc-dark-blue-90;
+      }
     }
   }
   .form-errors {
@@ -26,9 +49,26 @@
       font-size: 12px;
       margin-bottom: 25px;
       margin-top: 25px;
+      color: #006DEA;
+      &:focus {
+        outline: 3px auto $tc-dark-blue-90;
+      }
     }
   }
+
+  .tc-btn-wide:disabled {
+    background: $tc-gray-20;
+    color: $tc-gray-80;
+  }
   section.login-options {
+    a:focus {
+      outline: 3px auto $tc-dark-blue-90;
+    .network {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
     @media (max-width: 767px) {
       margin-bottom: 41px;
     }
