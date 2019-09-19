@@ -92,7 +92,7 @@ workflows:
           context : org-global
           filters:
             branches:
-              only: [ dev, dev-circleci2 ]
+              only: [ dev, dev-circleci2, feature/connect_registration_flow_changes ]
       - build-qa:
           context : org-global
           filters:
