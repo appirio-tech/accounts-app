@@ -5,9 +5,9 @@
   "requires": true,
   "dependencies": {
     "@babel/runtime": {
-      "version": "7.6.0",
-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.6.0.tgz",
-      "integrity": "sha512-89eSBLJsxNxOERC0Op4vd+0Bqm6wRMqMbFtV3i0/fbaWw/mJ8Q3eBvgX0G4SyrOOLCtbu98HspF8o09MRT+KzQ==",
+      "version": "7.6.2",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.6.2.tgz",
+      "integrity": "sha512-EXxN64agfUqqIGeEjI5dL5z0Sw0ZwWo1mLTi4mQowCZ42O59b7DRpZAnTC6OqdF28wMBMFKNb/4uFGrVaigSpg==",
       "requires": {
         "regenerator-runtime": "^0.13.2"
       },
@@ -485,8 +485,8 @@
       }
     },
     "appirio-tech-react-components": {
-      "version": "github:vigneshTheDev/react-components#376fc70f712d71219e7cc20bdf8ea8376efc84a4",
-      "from": "github:vigneshTheDev/react-components#376fc70f712d71219e7cc20bdf8ea8376efc84a4",
+      "version": "github:appirio-tech/react-components#15efabbf10c5849d681d7db6c57fe02da94a335d",
+      "from": "github:appirio-tech/react-components#15efabbf10c5849d681d7db6c57fe02da94a335d",
       "requires": {
         "appirio-tech-api-schemas": "^5.0.69",
         "appirio-tech-client-app-layer": "^0.1.3",
@@ -5981,9 +5981,9 @@
       }
     },
     "libphonenumber-js": {
-      "version": "1.7.24",
-      "resolved": "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.7.24.tgz",
-      "integrity": "sha512-2+8rEz5mLHUqSFNedMcBcP1gb0KMjnOSxt+3me1bNgcyTreHL6M1dVds41rgvYN5XLcmZmMGLwGL2bOxpGoi1Q==",
+      "version": "1.7.25",
+      "resolved": "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.7.25.tgz",
+      "integrity": "sha512-WlmFl3xSR0oGH0+ZGtEbcNgo6h7JUyYaRmGWlddrkEFmPjAULRur2KZzmNWQSBfD0LhUdnKYhwIi2MnB7gswWw==",
       "requires": {
         "minimist": "^1.2.0",
         "xml2js": "^0.4.17"
