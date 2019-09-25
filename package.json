@@ -12,7 +12,7 @@
     "build-connector:dev": "webpack --bail --progress --config webpack.config.connector.js"
   },
   "dependencies": {
-    "appirio-tech-react-components": "github:appirio-tech/react-components#767db77401edbee8ec6ff955b5a72a51ba93c755",
+    "appirio-tech-react-components": "github:appirio-tech/react-components#15efabbf10c5849d681d7db6c57fe02da94a335d",
     "@uirouter/angularjs": "^1.0.0",
     "angucomplete-alt": "^2.1.0",
     "angular": "^1.4.8",
