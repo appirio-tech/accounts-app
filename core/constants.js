@@ -33,7 +33,7 @@ export const TOPCODER_SSO_PROVIDER = 'sfdc-aspdev'//TODO update provider for top
 export const CREDITSUISSE_SSO_PROVIDER = 'CreditSuisse'
 export const LOCALSIMPLESAML_SSO_PROVIDER = 'LocalSimpleSaml'
 export const ZURICH_SSO_PROVIDER = 'Zurich'
-export const SAMLTESTIDP_SSO_PROVIDER = 'SamlTestIdp'
+export const SAMLTESTIDP_SSO_PROVIDER = 'saml-test-idp'
 
 export const SEGMENT_KEY = process.env.ACCOUNTS_SEGMENT_KEY
 
