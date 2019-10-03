@@ -485,8 +485,8 @@
       }
     },
     "appirio-tech-react-components": {
-      "version": "github:appirio-tech/react-components#15efabbf10c5849d681d7db6c57fe02da94a335d",
-      "from": "github:appirio-tech/react-components#15efabbf10c5849d681d7db6c57fe02da94a335d",
+      "version": "github:appirio-tech/react-components#2c6f87cd64c77de0076f6bdb25399c027f0ffb6c",
+      "from": "github:appirio-tech/react-components#2c6f87cd64c77de0076f6bdb25399c027f0ffb6c",
       "requires": {
         "appirio-tech-api-schemas": "^5.0.69",
         "appirio-tech-client-app-layer": "^0.1.3",
@@ -508,6 +508,7 @@
         "react-dom": "^15.3.1",
         "react-dropzone": "^3.5.3",
         "react-popper": "^0.7.5",
+        "react-portal": "^4.2.0",
         "react-redux": "^4.4.5",
         "react-router-dom": "^4.2.2",
         "react-select": "^0.9.1",
@@ -3262,9 +3263,9 @@
       }
     },
     "es-abstract": {
-      "version": "1.14.2",
-      "resolved": "https://registry.npmjs.org/es-abstract/-/es-abstract-1.14.2.tgz",
-      "integrity": "sha512-DgoQmbpFNOofkjJtKwr87Ma5EW4Dc8fWhD0R+ndq7Oc456ivUfGOOP6oAZTTKl5/CcNMP+EN+e3/iUzgE0veZg==",
+      "version": "1.15.0",
+      "resolved": "https://registry.npmjs.org/es-abstract/-/es-abstract-1.15.0.tgz",
+      "integrity": "sha512-bhkEqWJ2t2lMeaJDuk7okMkJWI/yqgH/EoGwpcvv0XW9RWQsRspI4wt6xuyuvMvvQE3gg/D9HXppgk21w78GyQ==",
       "requires": {
         "es-to-primitive": "^1.2.0",
         "function-bind": "^1.1.1",
@@ -3274,8 +3275,8 @@
         "is-regex": "^1.0.4",
         "object-inspect": "^1.6.0",
         "object-keys": "^1.1.1",
-        "string.prototype.trimleft": "^2.0.0",
-        "string.prototype.trimright": "^2.0.0"
+        "string.prototype.trimleft": "^2.1.0",
+        "string.prototype.trimright": "^2.1.0"
       },
       "dependencies": {
         "object-inspect": {
@@ -8233,9 +8234,9 @@
       "integrity": "sha1-OG/3qdLD3AFsJlvy5Z05cFD2Wvc="
     },
     "react-is": {
-      "version": "16.9.0",
-      "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.9.0.tgz",
-      "integrity": "sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw=="
+      "version": "16.10.1",
+      "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.10.1.tgz",
+      "integrity": "sha512-BXUMf9sIOPXXZWqr7+c5SeOKJykyVr2u0UDzEf4LNGc6taGkQe1A9DFD07umCIXz45RLr9oAAwZbAJ0Pkknfaw=="
     },
     "react-jade": {
       "version": "2.5.0",
@@ -8372,6 +8373,14 @@
       "requires": {
         "popper.js": "^1.12.5",
         "prop-types": "^15.5.10"
+      }
+    },
+    "react-portal": {
+      "version": "4.2.0",
+      "resolved": "https://registry.npmjs.org/react-portal/-/react-portal-4.2.0.tgz",
+      "integrity": "sha512-Zf+vGQ/VEAb5XAy+muKEn48yhdCNYPZaB1BWg1xc8sAZWD8pXTgPtQT4ihBdmWzsfCq8p8/kqf0GWydSBqc+Eg==",
+      "requires": {
+        "prop-types": "^15.5.8"
       }
     },
     "react-redux": {
