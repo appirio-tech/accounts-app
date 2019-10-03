@@ -470,7 +470,8 @@ function extractSSOUserData(profile, accessToken) {
  
   var ssoUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1)
   if (ssoProvider === WIPRO_SSO_PROVIDER || ssoProvider === APPIRIO_SSO_PROVIDER
-    || ssoProvider === TOPCODER_SSO_PROVIDER || ssoProvider === ZURICH_SSO_PROVIDER) {
+    || ssoProvider === TOPCODER_SSO_PROVIDER || ssoProvider === ZURICH_SSO_PROVIDER
+    || ssoProvider === CREDITSUISSE_SSO_PROVIDER) {
     firstName = profile.given_name
     lastName  = profile.family_name
     name      = profile.name
