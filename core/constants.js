@@ -33,6 +33,7 @@ export const TOPCODER_SSO_PROVIDER = 'sfdc-aspdev'//TODO update provider for top
 export const CREDITSUISSE_SSO_PROVIDER = 'CreditSuisse'
 export const LOCALSIMPLESAML_SSO_PROVIDER = 'LocalSimpleSaml'
 export const ZURICH_SSO_PROVIDER = 'Zurich'
+export const SAMLTESTIDP_SSO_PROVIDER = 'SamlTestIdp'
 
 export const SEGMENT_KEY = process.env.ACCOUNTS_SEGMENT_KEY
 
@@ -40,13 +41,14 @@ export const CONNECT_PROJECT_CALLBACK = 'new-project-callback'
 // this string should be regex aware i.e. it should backquote any regex reserve characters
 //export const SSO_PROVIDER_DOMAINS = 'wipro\\.com|asp\\.appirio\\.com|topcoder'
 // export const SSO_PROVIDER_DOMAINS = 'wipro\\.com'
-export const SSO_PROVIDER_DOMAINS = 'wipro\\.com|credit-suisse\\.com|localsimplesaml\\.com|zurich\\.com|zurichna\\.com|zurich\\.co\\.jp|zurich\\.ie|zurich\\.sg|zurich\\.com\\.au|zurich\\.ch|appirio\\.com|zurich\\.com\\.my|zurichservices\\.com|zurich\\.com\\.sg|zurich\\.co\\.id'
+export const SSO_PROVIDER_DOMAINS = 'wipro\\.com|credit-suisse\\.com|localsimplesaml\\.com|zurich\\.com|zurichna\\.com|zurich\\.co\\.jp|zurich\\.ie|zurich\\.sg|zurich\\.com\\.au|zurich\\.ch|appirio\\.com|zurich\\.com\\.my|zurichservices\\.com|zurich\\.com\\.sg|zurich\\.co\\.id|samltestidp\\.com'
 // individual domains should not backquote anything because it is matched without regex
 export const SSO_PROVIDER_DOMAINS_WIPRO = ['wipro.com', 'appirio.com']
 export const SSO_PROVIDER_DOMAINS_APPIRIO = ['asp.appirio.com']
 export const SSO_PROVIDER_DOMAINS_TOPCODER = ['topcoder']
 export const SSO_PROVIDER_DOMAINS_CREDITSUISSE = ['credit-suisse.com']
 export const SSO_PROVIDER_DOMAINS_LOCALSIMPLESAML = ['localsimplesaml.com']
+export const SSO_PROVIDER_DOMAINS_SAMLTESTIDP = ['samltestidp.com']
 export const SSO_PROVIDER_DOMAINS_ZURICH = ['zurich.com', 'zurichna.com', 'zurich.co.jp','zurich.ie', 'zurich.sg', 'zurich.com.au', 'zurich.ch', 'zurich.com.my', 'zurichservices.com', 'zurich.com.sg', 'zurich.co.id']
 
 export const UTM_SOURCE_CONNECT = 'connect'

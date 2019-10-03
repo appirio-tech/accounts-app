@@ -8,7 +8,7 @@ import { V3_JWT, V2_JWT, V2_SSO, AUTH0_REFRESH, AUTH0_JWT, ZENDESK_JWT, API_URL,
   TOPCODER_SSO_PROVIDER, APPIRIO_SSO_PROVIDER, SSO_PROVIDER_DOMAINS, SSO_PROVIDER_DOMAINS_WIPRO,
   SSO_PROVIDER_DOMAINS_APPIRIO, SSO_PROVIDER_DOMAINS_TOPCODER, CREDITSUISSE_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_CREDITSUISSE,
   LOCALSIMPLESAML_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_LOCALSIMPLESAML,
-  ZURICH_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_ZURICH } from './constants.js'
+  ZURICH_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_ZURICH, SAMLTESTIDP_SSO_PROVIDER, SSO_PROVIDER_DOMAINS_SAMLTESTIDP } from './constants.js'
 import fetch from 'isomorphic-fetch'
 import Auth0 from 'auth0-js'
 
@@ -360,7 +360,7 @@ export function registerUser(body) {
 export function ssoLogin(provider, state) {
   return new Promise(function(resolve, reject) {
     // supported backends
-    var providers = [ WIPRO_SSO_PROVIDER, APPIRIO_SSO_PROVIDER, TOPCODER_SSO_PROVIDER, CREDITSUISSE_SSO_PROVIDER, LOCALSIMPLESAML_SSO_PROVIDER, ZURICH_SSO_PROVIDER ]
+    var providers = [ WIPRO_SSO_PROVIDER, APPIRIO_SSO_PROVIDER, TOPCODER_SSO_PROVIDER, CREDITSUISSE_SSO_PROVIDER, LOCALSIMPLESAML_SSO_PROVIDER, ZURICH_SSO_PROVIDER, SAMLTESTIDP_SSO_PROVIDER ]
     if (providers.indexOf(provider) > -1) {
       auth0.popup.authorize({
         connection: provider,
@@ -470,7 +470,8 @@ function extractSSOUserData(profile, accessToken) {
  
   var ssoUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1)
   if (ssoProvider === WIPRO_SSO_PROVIDER || ssoProvider === APPIRIO_SSO_PROVIDER
-    || ssoProvider === TOPCODER_SSO_PROVIDER || ssoProvider === ZURICH_SSO_PROVIDER) {
+    || ssoProvider === TOPCODER_SSO_PROVIDER || ssoProvider === ZURICH_SSO_PROVIDER
+    || ssoProvider === SAMLTESTIDP_SSO_PROVIDER ) {
     firstName = profile.given_name
     lastName  = profile.family_name
     name      = profile.name
@@ -778,6 +779,8 @@ export function identifySSOProvider(emailOrHandle) {
       provider = LOCALSIMPLESAML_SSO_PROVIDER
     } else if (SSO_PROVIDER_DOMAINS_ZURICH.indexOf(domainLower) != -1) {
       provider = ZURICH_SSO_PROVIDER
+    } else if (SSO_PROVIDER_DOMAINS_SAMLTESTIDP.indexOf(domainLower) != -1) {
+      provider = SAMLTESTIDP_SSO_PROVIDER
     }
   }
 
