@@ -92,7 +92,7 @@ workflows:
           context : org-global
           filters:
             branches:
-              only: [ dev, dev-circleci2, feature/forward_optin_flag_to_salesforce_lead ]
+              only: [ dev, dev-circleci2 ]
       - build-qa:
           context : org-global
           filters:
