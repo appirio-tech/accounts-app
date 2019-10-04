@@ -171,6 +171,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
           companyName       : vm.companyName
           companySize       : vm.companySize
           userName          : vm.username
+          optOutMarketingEmails : vm.agreeTerm
         
         promises.push createLead(oneTimeToken,content)
         updateInfoConfig =
