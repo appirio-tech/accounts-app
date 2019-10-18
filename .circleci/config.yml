@@ -58,7 +58,14 @@ builddeploy_steps: &builddeploy_steps
             source awsenvconf
             ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
             source buildenvvar
-            ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
+            ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true          
+            if [[ true ]]; then
+                ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-qa-deployvar
+                source buildenvvar  
+                curl --user ${QA_USER_TOKEN}: \
+                  --data build_parameters[CIRCLE_JOB]=build \
+                  https://circleci.com/api/v1.1/project/github/$QA_PROJECT_USERNAME/$QA_PROJECT_REPONAME/tree/$QA_BRANCH
+            fi            
 
 jobs:
   # Build & Deploy against development backend
