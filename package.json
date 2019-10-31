@@ -39,7 +39,7 @@
     "coffee-script": "^1.10.0",
     "eslint": "^2.7.0",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1",
+    "webpack-dev-server": "^3.1.11",
     "webpack-s3-plugin": "^0.6.7"
   }
 }
