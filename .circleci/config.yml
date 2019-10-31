@@ -99,7 +99,7 @@ workflows:
           context : org-global
           filters:
             branches:
-              only: [ dev, dev-circleci2, feature/add-timezone-field-connectRegistration ]
+              only: [ dev, dev-circleci2 ]
       - build-qa:
           context : org-global
           filters:
