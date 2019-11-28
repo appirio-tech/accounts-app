@@ -189,6 +189,8 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
                 companySize: vm.companySize
                 timeZone: vm.timeZone
                 country: vm.country.name
+                workingHourStart: vm.workingHourStart
+                workingHourEnd: vm.workingHourEnd
               ]
           ]
         promises.push updateUserInfo(oneTimeToken,vm.username,updateInfoConfig)
