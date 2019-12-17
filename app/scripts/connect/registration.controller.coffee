@@ -3,7 +3,7 @@
 {
   registerUser, getFreshToken, getOneTimeToken, updateUserInfo, createLead, identifySSOProvider, getNewJWT
 } = require '../../../core/auth.js'
-{ 
+{
   DOMAIN, CONNECT_PROJECT_CALLBACK, UTM_SOURCE_CONNECT, V3_TEMP_JWT, ZENDESK_JWT, V3_JWT, AUTH0_JWT, AUTH0_REFRESH
 } = require '../../../core/constants.js'
 { npad } = require '../../../core/utils.js'
@@ -16,7 +16,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
   vm              = this
   vm.termsUrl     = 'https://connect.' + DOMAIN + '/terms'
   vm.privacyUrl   = 'https://www.' + DOMAIN + '/community/how-it-works/privacy-policy/'
-  vm.custommerStoriesUrl = 'https://www.topcoder.com/about/customer-stories/'
+  vm.custommerStoriesUrl = 'https://www.topcoder.com/case-studies/'
   vm.username     = ''
   vm.password     = ''
   vm.error        = false
@@ -44,7 +44,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
   afterActivationURL = $stateParams.retUrl ? 'https://connect.' + DOMAIN
   vm.isConnectProjectFlow = afterActivationURL && afterActivationURL.indexOf(CONNECT_PROJECT_CALLBACK) != -1
   oneTimeToken = null
-  
+
   if $stateParams.retUrl
     vm.hideLeftProgress = true
 
@@ -117,7 +117,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
       options:
         afterActivationURL: afterActivationURL
 
-    
+
 
     if profile #if sso registration
       config.param.active = true
@@ -162,7 +162,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
       then(()->
         setToken(V3_TEMP_JWT, oneTimeToken)
         promises = []
-        content = 
+        content =
           firstName         : vm.firstName
           lastName          : vm.lastName
           businessEmail     : vm.email
@@ -173,7 +173,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
           userName          : vm.username
           userId            : user.id
           optOutMarketingEmails : vm.agreeTerm
-        
+
         promises.push createLead(oneTimeToken,content)
         updateInfoConfig =
           param: [
@@ -187,12 +187,16 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
                 title: vm.title
                 companyName: vm.companyName
                 companySize: vm.companySize
+                timeZone: vm.timeZone
+                country: vm.country.name
+                workingHourStart: vm.workingHourStart
+                workingHourEnd: vm.workingHourEnd
               ]
           ]
         promises.push updateUserInfo(oneTimeToken,vm.username,updateInfoConfig)
         return Promise.all promises
       ).then(()->completeRegistration(user)).catch(()->completeRegistration(user));
-  
+
   completeRegistration = (user)->
     # move to the sso login if a user is already active and sso user
     if !!user?.active && user?.profile?.providerType == 'samlp'
@@ -223,7 +227,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
   vm.onSSORegister = (ssoUser) ->
     vm.isSSORegistration = false
     vm.ssoUser = ssoUser
-    
+
     if ssoUser?.firstName
       vm.firstName = ssoUser.firstName
       vm.registerForm?.firstname?.$setDirty()
@@ -277,7 +281,7 @@ ConnectRegistrationController = ($log, $state, $stateParams, $scope, ISO3166, Us
             when 'INVALID_LENGTH' then vm.emailErrorMessage = 'Email address should be 100 characters or less.'
             else vm.emailErrorMessage = 'Please enter a valid email address.'
         vm.reRender()
-  
+
   vm
 
 ConnectRegistrationController.$inject = [

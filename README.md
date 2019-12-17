@@ -2,7 +2,7 @@
 
 Standardize auth logic across all Topcoder frontend apps.
 
-This repo contains several pieces:
+This repo contains several pieces: 
 
 1. The accounts app itself, as deployed at accounts.topcoder.com
 2. The connector mini-app, as deployed at accounts.topcoder.com/connector.html
