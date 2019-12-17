@@ -12,8 +12,8 @@
     "build-connector:dev": "webpack --bail --progress --config webpack.config.connector.js"
   },
   "dependencies": {
-    "appirio-tech-react-components": "github:appirio-tech/react-components#feature/connectv2",
     "@uirouter/angularjs": "^1.0.0",
+    "appirio-tech-react-components": "github:appirio-tech/react-components#feature/connectv2",
     "angucomplete-alt": "^2.1.0",
     "angular": "^1.4.8",
     "angular-auth0": "^3.0.0",
