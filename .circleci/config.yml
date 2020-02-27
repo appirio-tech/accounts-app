@@ -22,9 +22,9 @@ install_deploysuite: &install_deploysuite
     cp ./../buildscript/buildenv.sh .
     cp ./../buildscript/awsconfiguration.sh .
 restore_cache_settings_for_build: &restore_cache_settings_for_build
-  key: ac-node-modules-{{ checksum "package.json" }}
+  key: ac-node-modules-{{ checksum "npm-shrinkwrap.json" }}
 save_cache_settings: &save_cache_settings
-  key: ac-node-modules-{{ checksum "package.json" }}
+  key: ac-node-modules-{{ checksum "npm-shrinkwrap.json" }}
   paths:
     - node_modules
 running_npm_build: &running_npm_build
