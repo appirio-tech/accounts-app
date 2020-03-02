@@ -1,7 +1,7 @@
 {
   "name": "tc-accounts",
   "description": "Topcoder Accounts App",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "exports.js",
   "scripts": {
     "build": "webpack -p --bail --progress --build",
