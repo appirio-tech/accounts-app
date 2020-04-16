@@ -118,7 +118,7 @@
             p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
         section.terms
-          p By clicking "Join" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
+          p By clicking "Join" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/privacy-policy/", target="_blank") Privacy Policy]
 
         button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid || vm.registerForm.$pending", tabIndex="0") Join
 
