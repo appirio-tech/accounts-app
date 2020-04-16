@@ -130,16 +130,18 @@ function getCookie(name) {
 }
 
 const storeToken = async (auth0) => {
+  let token = null
   if (auth0) {
     try {
       let rawIdToken = await auth0.getIdTokenClaims()
-      let token = rawIdToken['__raw']
+      token = rawIdToken['__raw']
       console.log("setting token in cookie")
       setCookie(tc_cookie, token, 30)
     } catch (e) {
       console.log("Error in setting cookie", e)
     }
   }
+  return token
 }
 
 export const getFreshToken = async () => {
@@ -148,9 +150,9 @@ export const getFreshToken = async () => {
   if (rs256Token && !isTokenExpired(rs256Token)) {
     token = rs256Token
     console.log("fetched token from cookie.")
-  } else {
+  } else if (isTokenExpired(rs256Token)) {
     console.log("fresh token request")
-    //token = login()
+    token = login()
   }
   return new Promise((resolve, reject) => {
     resolve(token)
@@ -163,7 +165,7 @@ export const login = async () => {
   await initAuth0().then(async (auth) => {
     auth0 = auth
     await auth.loginWithRedirect()
-    storeToken(auth0)
+    token = storeToken(auth0)
   }).catch((e) => { console.log("Error in auth0 login", e) })
   console.log("Token is", token)
   return token
