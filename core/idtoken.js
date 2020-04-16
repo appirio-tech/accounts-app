@@ -17,6 +17,7 @@ const initAuth0 = async () => {
 }
 
 window.addEventListener('load', async () => {
+  console.log('window loading...')
   try {
     const query = window.location.search;
     const shouldParseResult = query.includes("code=") && query.includes("state=");
@@ -144,7 +145,7 @@ export const getFreshToken = async () => {
     console.log("fetched token from cookie.")
   } else {
     console.log("fresh token request")
-    token = login()
+    //token = login()
   }
   return new Promise((resolve, reject) => {
     resolve(token)
