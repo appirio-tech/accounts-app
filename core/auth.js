@@ -66,8 +66,9 @@ export function isLoggedIn() {
   // make sure all tokens are set
   const v3jwt = getV3Jwt()
   const v2jwt = getV2Jwt()
-  const v2sso = getV2Sso()
-  return !!v3jwt && !!v2jwt && !!v2sso
+  //const v2sso = getV2Sso()
+  //return !!v3jwt && !!v2jwt && !!v2sso
+  return !!v3jwt && !!v2jwt
 }
 
 export function getV3Jwt() {
