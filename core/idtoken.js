@@ -19,6 +19,7 @@ const initAuth0 = async () => {
 window.addEventListener('load', async () => {
   console.log('window loading...')
   try {
+    auth0 = await initAuth0()
     const query = window.location.search;
     const shouldParseResult = query.includes("code=") && query.includes("state=");
     if (shouldParseResult) {
@@ -130,10 +131,14 @@ function getCookie(name) {
 
 const storeToken = async (auth0) => {
   if (auth0) {
-    let rawIdToken = await auth0.getIdTokenClaims()
-    let token = rawIdToken['__raw']
-    console.log("setting token in cookie")
-    setCookie(tc_cookie, token, 30)
+    try {
+      let rawIdToken = await auth0.getIdTokenClaims()
+      let token = rawIdToken['__raw']
+      console.log("setting token in cookie")
+      setCookie(tc_cookie, token, 30)
+    } catch (e) {
+      console.log("Error in setting cookie", e)
+    }
   }
 }
 
