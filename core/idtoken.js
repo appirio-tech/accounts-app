@@ -155,9 +155,16 @@ export const getFreshToken = async () => {
     token = rs256Token
     console.log("fetched token from cookie.")
   } else if (isTokenExpired(rs256Token)) {
-    let r = await auth0.getTokenSilently()
-    console.log("fresh token request", r)
-    storeToken(auth0)
+    try {
+      let r = await auth0.getTokenSilently()
+      console.log("fresh token request", r)
+      token = storeToken(auth0)
+      console.log("refreshed id-token", token)
+    } catch (e) {
+      console.log("Error in call getTokenSilently().", e)
+      token = login()
+    }
+
   }
   return new Promise((resolve, reject) => {
     resolve(token)
@@ -170,7 +177,7 @@ export const login = async () => {
   await initAuth0().then(async (auth) => {
     auth0 = auth
     await auth.loginWithPopup()
-    token =   storeToken(auth0)
+    token = storeToken(auth0)
   }).catch((e) => { console.log("Error in auth0 login", e) })
   console.log("Token is", token)
   return token
