@@ -9,7 +9,9 @@ const initAuth0 = async () => {
     return Auth0Client({
       domain: 'testsachin.topcoder-dev.com',
       client_id: 'Is6DB1N9VBbygNfh1UhDJM8SVC3SHtHm',
-      redirect_uri: window.location.protocol + "//" + window.location.host
+      redirect_uri: window.location.protocol + "//" + window.location.host,
+      useRefreshTokens: true,
+      cacheLocation: 'localstorage'
     })
   } else {
     return new Promise((resolve, reject) => { resolve(auth0) })
@@ -25,8 +27,9 @@ window.addEventListener('load', async () => {
     if (shouldParseResult) {
       const redirectResult = await auth0.handleRedirectCallback();
       //logged in. you can get the user profile like this:
+      console.log('parse result', redirectResult)
       const user = await auth0.getUser();
-      console.log("userrrrr", auth0)
+      console.log("userrrrr", auth0, user)
       storeToken(auth0)
     }
     if (auth0) {
@@ -134,6 +137,7 @@ const storeToken = async (auth0) => {
   if (auth0) {
     try {
       let rawIdToken = await auth0.getIdTokenClaims()
+      console.log("raw token", rawIdToken)
       token = rawIdToken['__raw']
       console.log("setting token in cookie")
       setCookie(tc_cookie, token, 30)
@@ -151,8 +155,9 @@ export const getFreshToken = async () => {
     token = rs256Token
     console.log("fetched token from cookie.")
   } else if (isTokenExpired(rs256Token)) {
-    console.log("fresh token request")
-    token = login()
+    let r = await auth0.getTokenSilently()
+    console.log("fresh token request", r)
+    storeToken(auth0)
   }
   return new Promise((resolve, reject) => {
     resolve(token)
@@ -164,8 +169,8 @@ export const login = async () => {
   let token = null
   await initAuth0().then(async (auth) => {
     auth0 = auth
-    await auth.loginWithRedirect()
-    token = storeToken(auth0)
+    await auth.loginWithPopup()
+    token =   storeToken(auth0)
   }).catch((e) => { console.log("Error in auth0 login", e) })
   console.log("Token is", token)
   return token
