@@ -14,8 +14,8 @@ window.addEventListener('load', async () => {
       domain,
       client_id,
       redirect_uri,
-      useRefreshTokens: true,
-      cacheLocation: 'localstorage'
+      useRefreshTokens: true
+      //cacheLocation: 'localstorage'
     })
     const query = window.location.search;
     const shouldParseResult = query.includes("code=") && query.includes("state=");
@@ -94,8 +94,8 @@ export const login = async () => {
         domain,
         client_id,
         redirect_uri,
-        useRefreshTokens: true,
-        cacheLocation: 'localstorage'
+        useRefreshTokens: true
+       // cacheLocation: 'localstorage'
       })
     }
     await auth0.loginWithPopup()
@@ -103,6 +103,14 @@ export const login = async () => {
     console.log("Token is", token)
   } catch (e) {
     console.log('Login error', e)
+  }
+}
+
+export const logout = () => {
+  try {
+    auth0.logout()
+  } catch (e) {
+    console.log('Logout error', e)
   }
 }
 
