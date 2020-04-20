@@ -1,6 +1,5 @@
 import Auth0Client from '@auth0/auth0-spa-js'
 import { decodeToken, isTokenExpired } from './token'
-import { func } from 'prop-types'
 
 let auth0 = null
 const tc_cookie = 'tc-rs256'
@@ -20,8 +19,8 @@ window.addEventListener('load', async () => {
       domain,
       client_id,
       redirect_uri,
-      useRefreshTokens: true
-      //cacheLocation: 'localstorage'
+      useRefreshTokens: true,
+      cacheLocation: 'localstorage'
     })
     const query = window.location.search;
     const shouldParseResult = query.includes("code=") && query.includes("state=");
@@ -96,8 +95,8 @@ export const login = async () => {
         domain,
         client_id,
         redirect_uri,
-        useRefreshTokens: true
-        // cacheLocation: 'localstorage'
+        useRefreshTokens: true,
+        cacheLocation: 'localstorage'
       })
     }
     await auth0.loginWithPopup()
