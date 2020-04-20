@@ -1,11 +1,17 @@
 import Auth0Client from '@auth0/auth0-spa-js'
 import { decodeToken, isTokenExpired } from './token'
+import { func } from 'prop-types'
 
 let auth0 = null
 const tc_cookie = 'tc-rs256'
 const domain = 'testsachin.topcoder-dev.com'
 const client_id = 'Is6DB1N9VBbygNfh1UhDJM8SVC3SHtHm'
 const redirect_uri = window.location.protocol + "//" + window.location.host
+
+let cdomain = ""
+if (location.hostname !== 'localhost') {
+  cdomain = ";domain=." + location.hostname.split('.').reverse()[1] + "." + location.hostname.split('.').reverse()[0]
+}
 
 window.addEventListener('load', async () => {
   console.log('window loading...')
@@ -33,11 +39,7 @@ function setCookie(cname, cvalue, exmins) {
   let d = new Date();
   d.setTime(d.getTime() + (exmins * 60 * 1000));
   let expires = ";expires=" + d.toUTCString();
-  let domain = ""
-  if (location.hostname !== 'localhost') {
-    domain = ";domain=." + location.hostname.split('.').reverse()[1] + "." + location.hostname.split('.').reverse()[0]
-  }
-  document.cookie = cname + "=" + cvalue + domain + expires + ";path=/";
+  document.cookie = cname + "=" + cvalue + cdomain + expires + ";path=/";
 }
 
 function getCookie(name) {
@@ -95,7 +97,7 @@ export const login = async () => {
         client_id,
         redirect_uri,
         useRefreshTokens: true
-       // cacheLocation: 'localstorage'
+        // cacheLocation: 'localstorage'
       })
     }
     await auth0.loginWithPopup()
@@ -109,6 +111,7 @@ export const login = async () => {
 export const logout = () => {
   try {
     auth0.logout()
+    setCookie(tc_cookie, "", -1)
   } catch (e) {
     console.log('Logout error', e)
   }
