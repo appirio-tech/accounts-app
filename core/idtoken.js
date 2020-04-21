@@ -46,32 +46,34 @@ function getCookie(name) {
   return v ? v[2] : undefined
 }
 
-const storeToken = async (auth0) => {
-  let token = null
-  if (auth0) {
-    try {
-      let rawIdToken = await auth0.getIdTokenClaims()
-      console.log("raw token", rawIdToken)
-      token = rawIdToken['__raw']
-      console.log("setting token in cookie")
-      setCookie(tc_cookie, token, 30)
-    } catch (e) {
-      console.log("Error in setting cookie", e)
+const storeToken = (auth0) => {
+  return new Promise(async (resolve, reject) => {
+    if (auth0) {
+      try {
+        let rawIdToken = await auth0.getIdTokenClaims()
+        console.log("raw token", rawIdToken)
+        const token = rawIdToken['__raw']
+        console.log("setting token in cookie")
+        setCookie(tc_cookie, token, 30)
+        resolve(token)
+      } catch (e) {
+        console.log("Error in setting cookie", e)
+        reject(e)
+      }
     }
-  }
-  return token
+    reject("No Auth0 object")
+  })
 }
 
 export const getFreshToken = async () => {
   return new Promise(async (resolve, reject) => {
-    let token = null
     const rs256Token = getCookie(tc_cookie)
     if (rs256Token) {
       if (isTokenExpired(rs256Token)) {
         try {
           let r = await auth0.getTokenSilently()
           console.log("fresh token request", r)
-          token = storeToken(auth0)
+          const token = storeToken(auth0)
           console.log("refreshed id-token", token)
           resolve(token)
         } catch (e) {
@@ -83,7 +85,7 @@ export const getFreshToken = async () => {
         console.log("fetched token from cookie.")
         resolve(rs256Token)
       }
-    }
+    } 
     reject(false)
   })
 }
@@ -100,8 +102,9 @@ export const login = async () => {
       })
     }
     await auth0.loginWithPopup()
-    let token = storeToken(auth0)
+    let token = await storeToken(auth0)
     console.log("Token is", token)
+    window.location = window.location.protocol + "//" + window.location.host
   } catch (e) {
     console.log('Login error', e)
   }
