@@ -10,6 +10,12 @@ html(ng-app='accounts', xmlns='http://www.w3.org/1999/xhtml', lang='en', xml:lan
       .ng-hide {
       display: none !important;
       }
+    script(src='../node_modules/angular-animate/angular-animate.js')
+    link(rel="stylesheet", href="../node_modules/angular-animate/angular-animate.css")
+    script(src='../node_modules/angular-aria/angular-aria.min.js')
+    link(rel="stylesheet", href="../node_modules/angular-aria/angular-aria.min.css")
+    script(src='../node_modules/angular-material/angular-material.min.js')
+    link(rel="stylesheet", href="../node_modules/angular-material/angular-material.min.css")
 
   body.tc
     .building(ng-hide="stateLoaded")
@@ -18,8 +24,8 @@ html(ng-app='accounts', xmlns='http://www.w3.org/1999/xhtml', lang='en', xml:lan
 
     div(ui-view="footer", ng-controller="FooterController as vm", ng-hide="hideCommonFooter", role="contentinfo" aria-label="Footer")
       .account-footer
+        p.copyright-notice(ng-bind-html="vm.copyrightNotice")
         a.privacy-policy(ng-href="https://www.topcoder.com/privacy-policy/", target="_blank")
           | Privacy Policy
-        p.copyright-notice(ng-bind-html="vm.copyrightNotice")
     include ./views/segment.io.jade
     include ./views/userway.jade

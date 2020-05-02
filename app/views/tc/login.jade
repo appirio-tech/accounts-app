@@ -1,9 +1,9 @@
-- var logoMobile = require("../../images/logo_mobile.svg")
-- var logoGithub = require("../../images/tc/github.svg")
-- var logoGooglePlus = require("../../images/tc/gplus.svg")
-- var logoFacebook = require("../../images/tc/facebook.svg")
-- var logoTwitter = require("../../images/tc/twitter.svg")
-- var logoSso = require("../../images/tc/sso.svg")
+- var logoMobile = require("../../images/tc-logo-bnw.png")
+- var logoGithub = require("../../images/tc/github-line.svg")
+- var logoGooglePlus = require("../../images/tc/google-line.svg")
+- var logoFacebook = require("../../images/tc/facebook-line.svg")
+- var logoTwitter = require("../../images/tc/twitter-line.svg")
+- var logoSso = require("../../images/tc/sso-line.svg")
 
 .login-container
   header(role="banner")
@@ -21,16 +21,18 @@
 
         p.form-error(ng-message="SOCIAL_LOGIN_ERROR" role="alert") User with that profile is not registered.
 
-      div.validation-bar(ng-class="{'error-bar': vm.loginErrors.USERNAME_NONEXISTANT}")
-        label(for="username") USERNAME OR EMAIL
-        input(ng-model="vm.username", id="username", placeholder="Username or Email", type="text", required, aria-invalid="false") 
+      md-input-container.md-block(flex-gt-sm)
+        label(for="username") Username or email
+        input(ng-model="vm.username", id="username", type="text", required, aria-invalid="false")
+
 
       toggle-password
 
       p.problem-signin
-        a.forgot-password(href="{{vm.forgotPasswordUrl}}", aria-label="forgot password") Forgot your password?
+        a.forgot-password(href="{{vm.forgotPasswordUrl}}", aria-label="forgot password") Forgot password?
 
       button.tc-btn.tc-btn-wide(type="submit", ng-disabled="vm.loginForm.$invalid || vm.loading") Log In
+
 
     section.login-options
       p.tc-separator
@@ -58,5 +60,5 @@
             img(src=logoSso, alt="Single Sign On Logo")
           span Single Sign On
 
-p.join-topcoder(role="region") Not a member yet? &nbsp;
-  a(href="{{vm.registrationUrl}}") Join Now
+p.join-topcoder(role="region") Don't Have an Account? &nbsp;
+  a(href="{{vm.registrationUrl}}") Sign Up
