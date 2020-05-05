@@ -17,14 +17,12 @@ window.addEventListener('load', async () => {
   try {
     auth0 = await Auth0Client({
       domain,
-      client_id,
-      redirect_uri,
-      useRefreshTokens: true,
-      cacheLocation: 'localstorage'
+      client_id
     })
     const query = window.location.search;
     const shouldParseResult = query.includes("code=") && query.includes("state=");
     if (shouldParseResult) {
+      console.log('parsed auth0 redirect url')
       const redirectResult = await auth0.handleRedirectCallback();
       console.log('parse result', redirectResult)
     }
