@@ -28,9 +28,9 @@ require './app-run'
 require 'appirio-tech-ng-ui-components'
 
 require('../node_modules/angucomplete-alt/angucomplete-alt.css')
-require('../node_modules/angular-animate/angular-animate.js')
-require('../node_modules/angular-aria/angular-aria.min.js')
-require('../node_modules/angular-material/angular-material.min.js')
+require('../node_modules/angular-animate/angular-animate.css')
+require('../node_modules/angular-aria/angular-aria.min.css')
+require('../node_modules/angular-material/angular-material.min.css')
 
 requireContextFiles = (files) ->
   paths = files.keys()
