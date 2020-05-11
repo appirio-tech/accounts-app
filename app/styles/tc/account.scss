@@ -59,8 +59,12 @@
   input[type='text'],
   input[type='email'],
   toggle-password,
+  toggle-confirm-password,
   toggle-password-with-tips {
-    width: 380px;
+    width: 410px;
+  }
+  .confirm-password {
+    margin-top: 10px;
   }
   .tips,
   .email-tips,
@@ -186,7 +190,7 @@
   width: 500px;
   margin: 20px auto;
   background-color: $gray-lighter;
-  padding: 20px 30px 20px 30px;
+  padding: 20px 0;
 }
 
 
@@ -207,6 +211,7 @@
       input[type='text'],
       input[type='email'],
       toggle-password,
+      toggle-confirm-password,
       toggle-password-with-tips {
         width: 100%;
       }

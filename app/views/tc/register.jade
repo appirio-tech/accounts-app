@@ -43,7 +43,7 @@
             title-field="name",
             match-class="angucomplete-highlight",
             field-tabindex="0"
-            minlength="1"
+            minlength="0"
           )
           img.down-arrow(src=iconDownArrow, alt="Country dropdown")
 
@@ -77,7 +77,7 @@
         .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid) }")
           md-input-container.md-block
             input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
-              label(for="email") Enter Your Email
+              label(for="email") Email
               input#email(aria-describedby="tp-help-email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="emailFocusLoss()", name="email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
 
           .tips.email-tips(id="tp-help-email", role="tooltip", ng-show="vm.emailTips")
@@ -120,10 +120,15 @@
 
             p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
+        .validation-bar.confirm-password
+          md-input-container.md-block
+            label(for="confirm-password-input") Confirm password
+            toggle-confirm-password(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser")
+
         section.terms
           p By clicking "Register" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/privacy-policy/", target="_blank") Privacy Policy]
 
-        button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid || vm.registerForm.$pending", tabIndex="0") Register
+        button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid || vm.registerForm.$pending || (vm.password !== vm.confirmPassword)", tabIndex="0") Register
 
   div(role="region" aria-label="Register With")
     section.login-options(ng-if="!vm.ssoUser")
