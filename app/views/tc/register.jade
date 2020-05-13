@@ -14,7 +14,7 @@
     h1 Join Topcoder
 
     form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off" aria-label="Registration")
-        
+
         // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
         input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
@@ -31,26 +31,27 @@
               label(for="lastname") Last Name
               input(ng-model="vm.lastname", maxlength="64", id="lastname", name="lastname", type="text", required)
 
-        md-input-container.md-block.country-dropdown#country
-          label(for="country") Country
-          angucomplete-alt(
-            input-name="country",
-            pause="100",
-            selected-object="vm.updateCountry",
-            local-data="vm.countries",
-            initial-value="vm.countryObj",
-            search-fields="name",
-            title-field="name",
-            match-class="angucomplete-highlight",
-            field-tabindex="0"
-            minlength="0"
-          )
-          img.down-arrow(src=iconDownArrow, alt="Country dropdown")
+        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.country.$dirty && !vm.isValidCountry) }")
+          md-input-container.md-block.country-dropdown#country
+            label(for="country") Country
+            angucomplete-alt(
+                input-name="country",
+                pause="100",
+                selected-object="vm.updateCountry",
+                local-data="vm.countries",
+                initial-value="vm.countryObj",
+                search-fields="name",
+                title-field="name",
+                match-class="angucomplete-highlight",
+                field-tabindex="0"
+                minlength="0"
+                      )
+            img.down-arrow(src=iconDownArrow, alt="Country dropdown")
 
-          .form-input-error(ng-show="vm.registerForm.country.$dirty && !vm.isValidCountry")
-            p.form-error(ng-show="!vm.isValidCountry" role="alert") Please choose a country from the list
+            .form-input-error(ng-show="vm.registerForm.country.$dirty && !vm.isValidCountry")
+              p.form-error(ng-show="!vm.isValidCountry" role="alert") Please choose a country from the list
 
-        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength) }")
+        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$dirty && vm.registerForm.username.$invalid) }")
           md-input-container.md-block
             input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
               label(for="username") Username
