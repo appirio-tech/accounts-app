@@ -3,7 +3,7 @@ import { decodeToken, isTokenExpired } from './token'
 
 let auth0 = null
 const tc_cookie = 'tc-rs256'
-const domain = 'testsachin.topcoder-dev.com'
+const domain = 'test-sachin-rs256.auth0.com'
 const client_id = 'Is6DB1N9VBbygNfh1UhDJM8SVC3SHtHm'
 const redirect_uri = window.location.protocol + "//" + window.location.host
 
