@@ -1,7 +1,8 @@
-- var logoMobile = require("../../images/logo_mobile.svg")
-- var logoGithub = require("../../images/tc/github.svg")
-- var logoGooglePlus = require("../../images/tc/gplus.svg")
-- var logoFacebook = require("../../images/tc/facebook.svg")
+- var logoMobile = require("../../images/tc-logo-bnw.png")
+- var logoGithub = require("../../images/tc/github-line.svg")
+- var logoGooglePlus = require("../../images/tc/google-line.svg")
+- var logoFacebook = require("../../images/tc/facebook-line.svg")
+- var iconDownArrow = require('../../images/tc/downloading.svg')
 
 .register-container
   header(role="banner")
@@ -13,47 +14,48 @@
     h1 Join Topcoder
 
     form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off" aria-label="Registration")
-        label(for="registration") Registration form
+
         // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
         input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
         p.form-error(ng-show="vm.errMsg" role="alert") {{vm.errMsg}}
 
         .first-last-names
-          input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
-            label(for="firstname") First Name
-            input(ng-model="vm.firstname", maxlength="64", id="firstname", name="firstname", placeholder="First Name", type="text", required)
+          md-input-container.md-block
+            input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
+              label(for="firstname") First Name
+              input(ng-model="vm.firstname", maxlength="64", id="firstname", name="firstname", type="text", required)
 
-          input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
-            label(for="lastname") Last Name
-            input(ng-model="vm.lastname", maxlength="64", id="lastname", name="lastname", placeholder="Last Name", type="text", required)
+          md-input-container.md-block
+            input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
+              label(for="lastname") Last Name
+              input(ng-model="vm.lastname", maxlength="64", id="lastname", name="lastname", type="text", required)
 
-        .country-dropdown#country
-          label(for="country") Country
-          angucomplete-alt(
-            input-name="country",
-            placeholder="Country",
-            pause="100",
-            selected-object="vm.updateCountry",
-            local-data="vm.countries",
-            initial-value="vm.countryObj",
-            search-fields="name",
-            title-field="name",
-            match-class="angucomplete-highlight",
-            field-tabindex="0"
-            minlength="1"
-          )
+        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.country.$dirty && !vm.isValidCountry) }")
+          md-input-container.md-block.country-dropdown#country
+            label(for="country") Country
+            angucomplete-alt(
+                input-name="country",
+                pause="100",
+                selected-object="vm.updateCountry",
+                local-data="vm.countries",
+                initial-value="vm.countryObj",
+                search-fields="name",
+                title-field="name",
+                match-class="angucomplete-highlight",
+                field-tabindex="0"
+                minlength="0"
+                      )
+            img.down-arrow(src=iconDownArrow, alt="Country dropdown")
 
-          .form-input-error(ng-show="vm.registerForm.country.$dirty && !vm.isValidCountry")
-            p.form-error(ng-show="!vm.isValidCountry" role="alert") Please choose a country from the list
+            .form-input-error(ng-show="vm.registerForm.country.$dirty && !vm.isValidCountry")
+              p.form-error(ng-show="!vm.isValidCountry" role="alert") Please choose a country from the list
 
-        .section-break
-          hr
-
-        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength) }")
-          input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
-            label(for="username") Username
-            input#username(aria-describedby="tp-help-username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="usernameFocusLoss()", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
+        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$dirty && vm.registerForm.username.$invalid) }")
+          md-input-container.md-block
+            input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
+              label(for="username") Username
+              input#username(aria-describedby="tp-help-username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="usernameFocusLoss()", ng-minlength="2", ng-maxlength="15", name="username", type="text", username-is-free, required)
 
           .tips.username-tips(id="tp-help-username", role="tooltip", ng-show="vm.usernameTips")
             .arrow
@@ -74,9 +76,10 @@
           p.form-error(ng-message="maxlength" role="alert") That username is not the correct length or format.
 
         .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid) }")
-          input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
-            label(for="email") Enter Your Email
-            input#email(aria-describedby="tp-help-email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="emailFocusLoss()", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
+          md-input-container.md-block
+            input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
+              label(for="email") Email
+              input#email(aria-describedby="tp-help-email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="emailFocusLoss()", name="email", type="email", valid-email, email-is-available, required, ng-disabled="!!vm.ssoUser")
 
           .tips.email-tips(id="tp-help-email", role="tooltip", ng-show="vm.emailTips")
             .arrow
@@ -102,8 +105,9 @@
           p.form-error(ng-message="required" role="alert") Please enter an email address.
 
         .validation-bar
-          label(for="password-input") Password
-          toggle-password-with-tips(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser", placeholder="Create Password")
+          md-input-container.md-block
+            label(for="password-input") Password
+            toggle-password-with-tips(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser")
 
           .tips.password-tips(id="tp-help-password", role="tooltip", ng-show="vm.passwordFocus && !vm.ssoForced")
             .arrow
@@ -117,10 +121,15 @@
 
             p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
-        section.terms
-          p By clicking "Join" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/privacy-policy/", target="_blank") Privacy Policy]
+        .validation-bar.confirm-password
+          md-input-container.md-block
+            label(for="confirm-password-input") Confirm password
+            toggle-confirm-password(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser")
 
-        button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid || vm.registerForm.$pending", tabIndex="0") Join
+        section.terms
+          p By clicking "Register" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/privacy-policy/", target="_blank") Privacy Policy]
+
+        button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid || vm.registerForm.$pending || (vm.password !== vm.confirmPassword)", tabIndex="0") Register
 
   div(role="region" aria-label="Register With")
     section.login-options(ng-if="!vm.ssoUser")
@@ -143,4 +152,4 @@
 
 .join-topcoder(role="region" aria-label="Login")
   span Have an account? &nbsp;
-    a(ui-sref="MEMBER_LOGIN") Log in
+    a(ui-sref="MEMBER_LOGIN") Log In

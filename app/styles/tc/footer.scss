@@ -27,22 +27,29 @@
 }
 
 .copyright-notice {
-  text-align: center;
+  color: #2a2a2a;
   font-size: 12px;
-  line-height: 14px;
-  color: #656565;
-  @include font-with-weight('Sofia Pro', 500);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  margin-right: 1.0em;
+  @include font-with-weight('Roboto');
   justify-content: center;
-  text-transform: uppercase;
 }
 
 .privacy-policy {
   @extend .copyright-notice;
-  margin-right: 1.0em;
+  font-weight: 400;
+  margin-right: 0;
+  text-decoration: underline;
 
   &:focus {
-	color: $tc-dark-blue;
+	color: #0D61BF;
   }
+}
+
+a.privacy-policy {
+  color: #0D61BF !important;
 }
 
 a.privacy-policy:focus {

@@ -99,7 +99,7 @@ workflows:
           context : org-global
           filters:
             branches:
-              only: [ dev, "hotfix/sso-topcoder-login"]
+              only: [ dev, "new_ui_style"]
       - build-qa:
           context : org-global
           filters:
