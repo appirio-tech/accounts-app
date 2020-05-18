@@ -53,6 +53,16 @@ const storeToken = (auth0) => {
         const token = rawIdToken['__raw']
         console.log("setting token in cookie")
         setCookie(tc_cookie, token, 30)
+     
+        /**
+         * for direct demo
+         */
+        let tcsso = rawIdToken['https://topcoder-dev.com/tcsso']
+
+        setCookie('v3jwt', token, 30)
+        setCookie('tcjwt', token, 30)
+        setCookie('tcsso', tcsso, 30)
+
         resolve(token)
       } catch (e) {
         console.log("Error in setting cookie", e)
