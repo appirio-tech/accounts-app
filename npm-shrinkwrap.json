@@ -177,6 +177,16 @@
       "resolved": "https://registry.npmjs.org/angular/-/angular-1.7.2.tgz",
       "integrity": "sha512-JcKKJbBdybUsmQ6x1M3xWyTYQ/ioVKJhSByEAjqrhmlOfvMFdhfMqAx5KIo8rLGk4DFolYPcCSgssjgTVjCtRQ=="
     },
+    "angular-animate": {
+      "version": "1.7.9",
+      "resolved": "https://registry.npmjs.org/angular-animate/-/angular-animate-1.7.9.tgz",
+      "integrity": "sha512-fV+AISy/HTzurQH2ngsJg+lLIvfu0ahc1h4AYKauaXVw97rZc2k4iUA1bMstiEyClsdayQX568kjQc1NK+oYhw=="
+    },
+    "angular-aria": {
+      "version": "1.7.9",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.7.9.tgz",
+      "integrity": "sha512-luI3Jemd1AbOQW0krdzfEG3fM0IFtLY0bSSqIDEx3POE0XjKIC1MkrO8Csyq9PPgueLphyAPofzUwZ8YeZ88SA=="
+    },
     "angular-auth0": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/angular-auth0/-/angular-auth0-3.0.0.tgz",
@@ -190,6 +200,11 @@
       "version": "1.7.2",
       "resolved": "https://registry.npmjs.org/angular-cookies/-/angular-cookies-1.7.2.tgz",
       "integrity": "sha512-5+B6ypV51aRPbQaqC2R5pr96q946C662dQC8QC1UL+cAlLkgkKZXXXzFRhiaEnhntkSnURWVCPasLVHQdZ3YgA=="
+    },
+    "angular-material": {
+      "version": "1.1.21",
+      "resolved": "https://registry.npmjs.org/angular-material/-/angular-material-1.1.21.tgz",
+      "integrity": "sha512-BiqvEu82dqQ4Sb4OjJHdVp/YJvFEMrtr7K2eS+6qlWPWUiF9K2K6IkX2H3p0wD7QlscjTz8n9W8uKL46PQjlCQ=="
     },
     "angular-messages": {
       "version": "1.7.2",
@@ -495,7 +510,7 @@
         "filestack-js": "^1.13.2",
         "formsy-react": "^0.19.5",
         "isomorphic-fetch": "^2.2.1",
-        "libphonenumber-js": "^1.4.6",
+        "libphonenumber-js": "1.4.6",
         "lodash": "^4.0.0",
         "material-ui": "^0.20.2",
         "moment": "^2.11.2",

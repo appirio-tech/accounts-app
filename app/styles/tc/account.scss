@@ -6,20 +6,20 @@
 .register-container,
 .reset-password-container,
 .registered-successfully-container {
-  @include font-with-weight('Merriweather Sans');
+  @include font-with-weight('Roboto');
   background-color: $white;
-  border-radius: 3px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px 1px #E9E9E9;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 560px;
+  width: 500px;
   margin: 60px auto 0;
   position: relative;
   text-align: center;
   header {
     background-color: $gray-darkest;
-    border-radius: 3px 3px 0 0;
+    border-radius: 10px 10px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,12 +36,12 @@
   }
   // Basic element stylings
   h1 {
-    @include font-with-weight('Sofia Pro', 300);
-    color: $gray-darkest;
+    @include font-with-weight('Barlow Condensed Medium');
+    color: #2A2A2A;
+    font-size: 34px;
+    line-height: 38px;
     align-self: center;
     width: 380px;
-    font-size: 20px;
-    line-height: 30px;
     margin: 0 auto;
     margin-bottom: 40px;
     margin-top: 39px;
@@ -59,14 +59,18 @@
   input[type='text'],
   input[type='email'],
   toggle-password,
+  toggle-confirm-password,
   toggle-password-with-tips {
-    width: 380px;
+    width: 410px;
+  }
+  .confirm-password {
+    margin-top: 10px;
   }
   .tips,
   .email-tips,
   .password-tips {
     @media screen and (min-width: 915px) {
-      left: 395px;
+      left: 430px;
     }
   }
   // Autocomplete
@@ -97,13 +101,11 @@
         filter: brightness(80%);
       }
       span {
-        @include font-with-weight('Sofia Pro', 500);
+        @include font-with-weight('Roboto');
         color: #6b6b6b;
         cursor: pointer;
         font-size: 10px;
         line-height: 13px;
-        margin-top: 10px;
-        text-transform: uppercase;
         transition: .1s all;;
       }
     }
@@ -136,8 +138,6 @@
           cursor: pointer;
           font-size: 10px;
           line-height: 13px;
-          margin-top: 10px;
-          text-transform: uppercase;
         }
         .ico {
           cursor: pointer;
@@ -146,54 +146,25 @@
           margin-top: 22px;
         }
       }
-      .github {
-        .ico {
-          color: #404041;
-        }
-      }
-      .facebook {
-        margin-left: 41px;
-        .ico {
-          color: #0d72b9;
-        }
-      }
-      .google-plus {
-        margin-left: 43px;
-        .ico {
-          padding-top: 10px;
-          border: 1px solid #d1d3d4;
-          border-radius: 4px;
-          color: #ee4036;
-        }
-      }
-      .twitter {
-        margin-left: 40px;
-        .ico {
-          color: #26a9e0;
-        }
-      }
-      .sso {
-        margin-left: 22px;
-        .ico {
-          color: #000000;
-        }
-      }
     }
   }
 }
 
 // Register Link styles
 .join-topcoder {
-  @include font-with-weight('Sofia Pro', 500);
+  @include font-with-weight('Roboto');
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  font-size: $label-small;
-  margin-top: 30px;
-  text-transform: uppercase;
+  color: #2A2A2A;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  margin-top: 10px;
   a {
     display: inline;
-    color: #006dea !important;
+    font-weight: 400;
+    color: #0D61BF !important;
     text-decoration: underline;
     &:focus {
       outline: 3px auto $tc-dark-blue-90;
@@ -213,12 +184,11 @@
 .account-footer {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
+  width: 500px;
+  margin: 20px auto;
   background-color: $gray-lighter;
-  padding: 20px 30px 20px 30px;
-  .copyright-notice {
-    color: #6b6b6b;
-  }
+  padding: 20px 0;
 }
 
 
@@ -239,6 +209,7 @@
       input[type='text'],
       input[type='email'],
       toggle-password,
+      toggle-confirm-password,
       toggle-password-with-tips {
         width: 100%;
       }
@@ -281,9 +252,11 @@
     background: $white;
     border: none;
     display: inline-block;
-    font-family: 'Sofia Pro', Arial, sans-serif;
-    font-size: 10px;
-    font-weight: 500;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #7F7F7F;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1.1px;
     padding: 0 15px;
     position: relative;
     text-align: center;

@@ -70,6 +70,10 @@
   font-style: italic;
 }
 
+html {
+  background-color: $gray-lighter;
+}
+
 body.tc {
   @include font-with-weight('Merriweather Sans', 400);
   background-color: $gray-lighter;
@@ -124,7 +128,7 @@ body.tc {
 //
 .form-errors {
   position: relative;
-  width: 380px;
+  width: 410px;
   line-height: 22px;
   text-align: left;
   @media (max-width: 767px) {
@@ -143,22 +147,21 @@ body.tc {
 
 .form-error {
   @extend .form-notice;
-  color: #ed5d5d;
+  color: $error;
 }
 
 
 .form-input-error {
-  background-color: $error-lighter;
-  border: 1px solid $error-light;
   color: $error;
   font-size: 12px;
   line-height: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 10px;
+  padding-top: 0;
   text-align: left;
   width: 100%;
   @media (min-width: 768px) {
-    width: 380px;
+    width: 410px;
   }
 }
 
@@ -168,7 +171,6 @@ body.tc {
   font-size: 12px;
   margin-bottom: 5px;
   margin-top: 5px;
-  text-transform: uppercase;
   .mandatory {
     color: $primary-light;
     float: right;
@@ -197,13 +199,13 @@ body.tc {
     position: absolute;
     top: 0px;
   }
-  &.error-bar:before {
-    background-color: $error;
-    display: block;
+  &.error-bar md-input-container label:not(.md-no-float)  {
+    color: $error;
   }
-  &.success-bar:before {
-    background-color: $success;
-    display: block;
+  &.error-bar md-input-container input,
+  &.error-bar md-input-container input.md-input:focus,
+  &.error-bar .angucomplete-holder input:focus {
+    border-color: $error !important;
   }
 
   @media (max-width: 767px) {
@@ -270,12 +272,12 @@ $tips-background: $gray-lighter;
   h2 {
     @include sofia-pro-medium;
     font-size: 14px;
-    padding-bottom: 15px;
     @media only screen and (max-width: 915px) {
       font-size: 16px;
     }
   }
   p {
+    margin: 0;
     color: $gray-darkest;
     font-size: 13px;
     line-height: 1.3;
