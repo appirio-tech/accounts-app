@@ -6,6 +6,7 @@ const tc_cookie = 'tc-rs256'
 const domain = 'testsachin.topcoder-dev.com'
 const client_id = 'Is6DB1N9VBbygNfh1UhDJM8SVC3SHtHm'
 const redirect_uri = window.location.protocol + "//" + window.location.host
+const cexpiremins = 24*30*30 // local cookie expiry in minutes
 
 let cdomain = ""
 if (location.hostname !== 'localhost') {
@@ -17,7 +18,9 @@ window.addEventListener('load', async () => {
   try {
     auth0 = await Auth0Client({
       domain,
-      client_id
+      client_id,
+      redirect_uri,
+      cacheLocation: 'localstorage'
     })
     const query = window.location.search;
     const shouldParseResult = query.includes("code=") && query.includes("state=");
@@ -52,16 +55,16 @@ const storeToken = (auth0) => {
         console.log("raw token", rawIdToken)
         const token = rawIdToken['__raw']
         console.log("setting token in cookie")
-        setCookie(tc_cookie, token, 30)
+        setCookie(tc_cookie, token, cexpiremins)
      
         /**
          * for direct demo
          */
         let tcsso = rawIdToken['https://topcoder-dev.com/tcsso']
 
-        setCookie('v3jwt', token, 30)
-        setCookie('tcjwt', token, 30)
-        setCookie('tcsso', tcsso, 30)
+        setCookie('v3jwt', token, cexpiremins)
+        setCookie('tcjwt', token, cexpiremins)
+        setCookie('tcsso', tcsso, cexpiremins)
 
         resolve(token)
       } catch (e) {
@@ -94,6 +97,7 @@ export const getFreshToken = async () => {
         resolve(rs256Token)
       }
     } 
+    // TODO how to handle if cookie expired locally
     reject(false)
   })
 }
@@ -105,10 +109,10 @@ export const login = async () => {
         domain,
         client_id,
         redirect_uri,
-        useRefreshTokens: true,
         cacheLocation: 'localstorage'
       })
     }
+
     await auth0.loginWithPopup()
     let token = await storeToken(auth0)
     console.log("Token is", token)
