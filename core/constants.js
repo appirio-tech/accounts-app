@@ -27,7 +27,7 @@ export const BUSY_PROGRESS_MESSAGE = 'Processing...'
 
 export const ALLOWED_ORIGINS = [DOMAIN, 'http://localhost:3000', 'local.topcoder-dev.com:3000']
 
-export const WIPRO_SSO_PROVIDER = 'wipro-adfs'
+export const WIPRO_SSO_PROVIDER = process.env.WIPRO_ADFS || 'wipro-adfs'
 export const APPIRIO_SSO_PROVIDER = 'sfdc-aspdev'
 export const TOPCODER_SSO_PROVIDER = 'sfdc-aspdev'//TODO update provider for topcoder sfdc org
 export const CREDITSUISSE_SSO_PROVIDER = 'CreditSuisse'
