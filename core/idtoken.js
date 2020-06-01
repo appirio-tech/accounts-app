@@ -1,5 +1,6 @@
 import Auth0Client from '@auth0/auth0-spa-js'
 import { decodeToken, isTokenExpired } from './token'
+import _ from 'lodash'
 
 let auth0 = null
 const tc_cookie = 'tc-rs256'
@@ -55,18 +56,30 @@ const storeToken = (auth0) => {
         console.log("raw token", rawIdToken)
         const token = rawIdToken['__raw']
         console.log("setting token in cookie")
-        setCookie(tc_cookie, token, cexpiremins)
-     
-        /**
-         * for direct demo
-         */
-        let tcsso = rawIdToken['https://topcoder-dev.com/tcsso']
 
-        setCookie('v3jwt', token, cexpiremins)
-        setCookie('tcjwt', token, cexpiremins)
-        setCookie('tcsso', tcsso, cexpiremins)
+        let userActive = _.find(rawIdToken, (value, key) => {
+          return (key.indexOf('active') !== -1)
+        })
 
-        resolve(token)
+        if (userActive) {
+          setCookie(tc_cookie, token, cexpiremins)
+
+          /**
+           * for direct demo
+           */
+          let tcsso = _.find(rawIdToken, (value, key) => {
+            return (key.indexOf('tcsso') !== -1)
+          })
+
+          setCookie('v3jwt', token, cexpiremins)
+          setCookie('tcjwt', token, cexpiremins)
+          setCookie('tcsso', tcsso, cexpiremins)
+
+          resolve(token)
+        } else {
+           console.log("User not active")
+           logout()
+        }
       } catch (e) {
         console.log("Error in setting cookie", e)
         reject(e)
