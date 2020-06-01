@@ -27,12 +27,12 @@ export const BUSY_PROGRESS_MESSAGE = 'Processing...'
 
 export const ALLOWED_ORIGINS = [DOMAIN, 'http://localhost:3000', 'local.topcoder-dev.com:3000']
 
-export const WIPRO_SSO_PROVIDER = 'wipro-adfs'
-export const APPIRIO_SSO_PROVIDER = 'sfdc-aspdev'
-export const TOPCODER_SSO_PROVIDER = 'sfdc-aspdev'//TODO update provider for topcoder sfdc org
-export const CREDITSUISSE_SSO_PROVIDER = 'CreditSuisse'
-export const LOCALSIMPLESAML_SSO_PROVIDER = 'LocalSimpleSaml'
-export const ZURICH_SSO_PROVIDER = 'Zurich'
+export const WIPRO_SSO_PROVIDER = process.env.WIPRO_SSO_PROVIDER || 'wipro-adfs'
+export const APPIRIO_SSO_PROVIDER = process.env.APPIRIO_SSO_PROVIDER || 'sfdc-aspdev'
+export const TOPCODER_SSO_PROVIDER = process.env.TOPCODER_SSO_PROVIDER || 'sfdc-aspdev'//TODO update provider for topcoder sfdc org
+export const CREDITSUISSE_SSO_PROVIDER = process.env.CREDITSUISSE_SSO_PROVIDER || 'CreditSuisse'
+export const LOCALSIMPLESAML_SSO_PROVIDER = process.env.LOCALSIMPLESAML_SSO_PROVIDER ||'LocalSimpleSaml'
+export const ZURICH_SSO_PROVIDER = process.env.ZURICH_SSO_PROVIDER || 'Zurich'
 
 export const SEGMENT_KEY = process.env.ACCOUNTS_SEGMENT_KEY
 
