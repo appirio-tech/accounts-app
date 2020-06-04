@@ -78,6 +78,7 @@ const storeToken = (auth0) => {
           resolve(token)
         } else {
            console.log("User not active")
+           alert("Your account is not active. Please check your mail to activate the account.")
            logout()
         }
       } catch (e) {
