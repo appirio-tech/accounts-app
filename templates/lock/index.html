@@ -55,9 +55,9 @@
             /* additional configuration needed for custom domains */
             configurationBaseUrl: config.clientConfigurationBaseUrl,
             overrides: {
-              __tenant: config.auth0Tenant,
-              __token_issuer: 'testsachin.topcoder-dev.com'
-            }, 
+                __tenant: config.auth0Tenant,
+                __token_issuer: 'testsachin.topcoder-dev.com'
+            },
             assetsUrl: config.assetsUrl,
             allowedConnections: connection ? [connection] : null,
             rememberLastLogin: !prompt,
@@ -70,18 +70,28 @@
             prefill: loginHint ? { email: loginHint, username: loginHint } : null,
             closable: false,
             defaultADUsernameFromEmailPrefix: false,
-            additionalSignUpFields: [{
-                type: "select",
-                name: "country",
-                placeholder: "choose your location",
-                options: [
-                    { value: "USA", label: "United States" },
-                    { value: "IN", label: "India" }
-                ],
-                // The following properties are optional
-                //icon: "https://example.com/assests/location_icon.png",
-                prefill: "USA"
-            }]
+            additionalSignUpFields: [
+                {
+                    name: "firstName",
+                    placeholder: "Enter your first name",
+                    validator: function (firstName) {
+                        return {
+                            valid: firstName.length >= 2,
+                            hint: "Must have 2 or more chars" // optional
+                        };
+                    }
+                },
+                {
+                    name: "lastName",
+                    placeholder: "Enter your last name",
+                    validator: function (lastName) {
+                        return {
+                            valid: lastName.length >= 2,
+                            hint: "Must have 2 or more chars" // optional
+                        };
+                    }
+                }
+            ]
         });
 
         if (colors.page_background) {
