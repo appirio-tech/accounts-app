@@ -9,6 +9,7 @@ const client_id = 'Is6DB1N9VBbygNfh1UhDJM8SVC3SHtHm'
 const redirect_uri = window.location.protocol + "//" + window.location.host
 const cexpiremins = 24 * 30 * 30 // local cookie expiry in minutes
 const registerSuccessUrl = 'https://auth0-login.topcoder-dev.com/register_success.html'
+let logoutReturnUrl = redirect_uri
 
 let cdomain = ""
 if (location.hostname !== 'localhost') {
@@ -78,8 +79,8 @@ const storeToken = (auth0) => {
           resolve(token)
         } else {
           console.log("User not active")
-          await logout()
-          window.location = registerSuccessUrl
+          logoutReturnUrl = registerSuccessUrl
+          logout()
         }
       } catch (e) {
         console.log("Error in setting cookie", e)
@@ -136,17 +137,15 @@ export const login = async () => {
   }
 }
 
-export const logout = async () => {
-  return new Promise(async function (resolve, reject) {
-    try {
-      await auth0.logout()
-      setCookie(tc_cookie, "", -1)
-      resolve(true)
-    } catch (e) {
-      console.log('Logout error', e)
-      reject(`Logout error ${e}`)
-    }
-  })
+export const logout = () => {
+  try {
+    auth0.logout({
+      returnTo: logoutReturnUrl
+    })
+    setCookie(tc_cookie, "", -1)
+  } catch (e) {
+    console.log('Logout error', e)
+  }
 }
 
 export {
