@@ -7,7 +7,8 @@ const tc_cookie = 'tc-rs256'
 const domain = 'testsachin.topcoder-dev.com'
 const client_id = 'Is6DB1N9VBbygNfh1UhDJM8SVC3SHtHm'
 const redirect_uri = window.location.protocol + "//" + window.location.host
-const cexpiremins = 24*30*30 // local cookie expiry in minutes
+const cexpiremins = 24 * 30 * 30 // local cookie expiry in minutes
+const registerSuccessUrl = 'https://auth0-login.topcoder-dev.com/register_success.html'
 
 let cdomain = ""
 if (location.hostname !== 'localhost') {
@@ -71,15 +72,14 @@ const storeToken = (auth0) => {
             return (key.indexOf('tcsso') !== -1)
           })
 
-          setCookie('v3jwt', token, cexpiremins)
-          setCookie('tcjwt', token, cexpiremins)
-          setCookie('tcsso', tcsso, cexpiremins)
-
+          //setCookie('v3jwt', token, cexpiremins)
+          //setCookie('tcjwt', token, cexpiremins)
+          //setCookie('tcsso', tcsso, cexpiremins)
           resolve(token)
         } else {
-           console.log("User not active")
-           alert("Your account is not active. Please check your mail to activate the account.")
-           logout()
+          console.log("User not active")
+          await logout()
+          window.location = registerSuccessUrl
         }
       } catch (e) {
         console.log("Error in setting cookie", e)
@@ -110,7 +110,7 @@ export const getFreshToken = async () => {
         console.log("fetched token from cookie.")
         resolve(rs256Token)
       }
-    } 
+    }
     // TODO how to handle if cookie expired locally
     reject(false)
   })
@@ -136,13 +136,17 @@ export const login = async () => {
   }
 }
 
-export const logout = () => {
-  try {
-    auth0.logout()
-    setCookie(tc_cookie, "", -1)
-  } catch (e) {
-    console.log('Logout error', e)
-  }
+export const logout = async () => {
+  return new Promise(async function (resolve, reject) {
+    try {
+      await auth0.logout()
+      setCookie(tc_cookie, "", -1)
+      resolve(true)
+    } catch (e) {
+      console.log('Logout error', e)
+      reject(`Logout error ${e}`)
+    }
+  })
 }
 
 export {
