@@ -165,10 +165,18 @@ import { getNewJWT } from '../../../core/auth.js'
         }
       }
       var redirectURL = vm.retUrl ? vm.retUrl : SKILL_PICKER_URL;
+
+      var afterActivationURL;
+      if (vm.regSource && vm.regSource === 'tcBusiness') {
+        afterActivationURL = `https://connect.${DOMAIN}/`
+      } else {
+        afterActivationURL = `https://www.${DOMAIN}/challenges`
+      }
+
       var body = {
         param: userInfo,
         options: {
-          afterActivationURL: redirectURL
+          afterActivationURL: afterActivationURL
         }
       }
 
