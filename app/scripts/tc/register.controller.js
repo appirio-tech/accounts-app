@@ -31,7 +31,7 @@ import { getNewJWT } from '../../../core/auth.js'
       vm.lastname = vm.regForm.lastName
       vm.countryObj = ISO3166.getCountryObjFromCountryCode(vm.regForm.country)
     }
-    
+
     // prepares utm params, if available
     var utm = {
       source : $stateParams && $stateParams.utm_source ? $stateParams.utm_source : '',
@@ -43,6 +43,8 @@ import { getNewJWT } from '../../../core/auth.js'
     vm.defaultPlaceholder = 'Create Password'
     vm.busyMessage = BUSY_PROGRESS_MESSAGE
     vm.retUrl = $stateParams && $stateParams.retUrl ? $stateParams.retUrl : SKILL_PICKER_URL
+    if ($stateParams && $stateParams.regSource)
+      vm.regSource = $stateParams.regSource
     vm.countries = ISO3166.getAllCountryObjects()
 
     vm.$stateParams = $stateParams
@@ -55,7 +57,7 @@ import { getNewJWT } from '../../../core/auth.js'
       }
     })
     $scope.$watch('vm.email', function(email) {
-      vm.ssoForced = !!(identifySSOProvider(email))     
+      vm.ssoForced = !!(identifySSOProvider(email))
     })
 
     $scope.usernameFocusLoss = function () {
@@ -96,7 +98,7 @@ import { getNewJWT } from '../../../core/auth.js'
     }
 
     function startSSO() {
-      $state.go ('SSO_LOGIN', 
+      $state.go ('SSO_LOGIN',
         {
           app: 'member',
           email   : vm.email,
@@ -119,7 +121,7 @@ import { getNewJWT } from '../../../core/auth.js'
           return
         }
       }
-      
+
       vm.registering = true
       var userInfo = {
         handle: vm.username,
@@ -133,7 +135,8 @@ import { getNewJWT } from '../../../core/auth.js'
         },
         utmSource: utm.source,
         utmMedium: utm.medium,
-        utmCampaign: utm.campaign
+        utmCampaign: utm.campaign,
+        regSource: vm.regSource || ''
       }
 
       if (!vm.isSocialRegistration && !vm.ssoUser) {// if not social or sso registration
@@ -162,10 +165,18 @@ import { getNewJWT } from '../../../core/auth.js'
         }
       }
       var redirectURL = vm.retUrl ? vm.retUrl : SKILL_PICKER_URL;
+
+      var afterActivationURL;
+      if (vm.regSource && vm.regSource === 'tcBusiness') {
+        afterActivationURL = `https://connect.${DOMAIN}/`
+      } else {
+        afterActivationURL = `https://www.${DOMAIN}/challenges`
+      }
+
       var body = {
         param: userInfo,
         options: {
-          afterActivationURL: redirectURL
+          afterActivationURL: afterActivationURL
         }
       }
 
@@ -256,7 +267,7 @@ import { getNewJWT } from '../../../core/auth.js'
 
     function loadSSOUser(ssoUser) {
       vm.ssoUser = ssoUser
-      
+
       if (ssoUser && ssoUser.firstName) {
         vm.firstname = ssoUser.firstName
         vm.registerForm.firstname.$setDirty()
