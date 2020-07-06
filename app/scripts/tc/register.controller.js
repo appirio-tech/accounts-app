@@ -170,7 +170,7 @@ import { getNewJWT } from '../../../core/auth.js'
       if (vm.regSource && vm.regSource === 'tcBusiness') {
         afterActivationURL = `https://connect.${DOMAIN}/`
       } else {
-        afterActivationURL = `https://www.${DOMAIN}/challenges`
+        afterActivationURL = `https://www.${DOMAIN}/community/practice`
       }
 
       var body = {
