@@ -35,6 +35,21 @@ export function decodeToken(token) {
     throw new Error('Cannot decode the token')
   }
 
+  // covert base64 token in JSON object
+  let t = JSON.parse(decoded)
+
+  // tweaking for custom claim for RS256
+  t.userId = _.parseInt(_.find(t, (value, key) => {
+    return (key.indexOf('userId') !== -1)
+  }))
+  t.handle = _.find(t, (value, key) => {
+    return (key.indexOf('handle') !== -1)
+  })
+  t.roles = _.find(t, (value, key) => {
+    return (key.indexOf('roles') !== -1)
+  })
+
+
   return JSON.parse(decoded)
 }
 
