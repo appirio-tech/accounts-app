@@ -50,7 +50,7 @@ export function decodeToken(token) {
   })
 
 
-  return JSON.parse(decoded)
+  return t
 }
 
 export function isTokenExpired(token, offsetSeconds = 0) {
