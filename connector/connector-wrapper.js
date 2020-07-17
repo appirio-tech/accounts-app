@@ -1,5 +1,6 @@
 import { GET_FRESH_TOKEN_REQUEST, GET_FRESH_TOKEN_SUCCESS, GET_FRESH_TOKEN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, DOMAIN } from '../core/constants.js'
 import createFrame from './iframe.js'
+import {getToken} from '../core/token'
 
 let iframe = null
 let loading = null
@@ -36,7 +37,7 @@ const proxyCall = function(REQUEST, SUCCESS, FAILURE, params = {}) {
   }
 
   function request() {
-    return new Promise( (resolve, reject) => {
+    /*return new Promise( (resolve, reject) => {
       function receiveMessage(e) {
           const safeFormat = e.data.type === SUCCESS || e.data.type === FAILURE
           if (safeFormat) {
@@ -51,6 +52,10 @@ const proxyCall = function(REQUEST, SUCCESS, FAILURE, params = {}) {
       const payload = Object.assign({}, { type: REQUEST }, params)
 
       iframe.contentWindow.postMessage(payload, url)
+    }) */
+    return new Promise((resolve, reject) => {
+      const token = getToken('tcjwt')
+      token ? resolve({ token: token }) : reject("tcjwt cookie not found")
     })
   }
 
