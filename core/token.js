@@ -1,5 +1,6 @@
 import { V3_JWT, AUTH0_REFRESH, AUTH0_JWT, V2_JWT, V2_SSO, ZENDESK_JWT, DOMAIN } from './constants.js'
 import fromPairs from 'lodash/fromPairs'
+import _ from 'lodash'
 
 export function clearTokens() {
   removeToken(V3_JWT)
@@ -34,8 +35,22 @@ export function decodeToken(token) {
   if (!decoded) {
     throw new Error('Cannot decode the token')
   }
+  
+  // covert base64 token in JSON object
+  let t = JSON.parse(decoded)
 
-  return JSON.parse(decoded)
+  // tweaking for custom claim for RS256 id-token
+  t.userId = _.parseInt(_.find(t, (value, key) => {
+    return (key.indexOf('userId') !== -1)
+  }))
+  t.handle = _.find(t, (value, key) => {
+    return (key.indexOf('handle') !== -1)
+  })
+  t.roles = _.find(t, (value, key) => {
+    return (key.indexOf('roles') !== -1)
+  })
+
+  return t
 }
 
 export function isTokenExpired(token, offsetSeconds = 0) {
