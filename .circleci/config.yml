@@ -99,7 +99,7 @@ workflows:
           context : org-global
           filters:
             branches:
-              only: [ dev, "new_ui_style"]
+              only: [ dev, "new_ui_style", 'feature/RS256-backward-compatibility']
       - build-qa:
           context : org-global
           filters:

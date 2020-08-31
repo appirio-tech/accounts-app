@@ -104,7 +104,7 @@
 
           p.form-error(ng-message="required" role="alert") Please enter an email address.
 
-        .validation-bar
+        .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.password.$dirty && vm.registerForm.password.$invalid) }")
           md-input-container.md-block
             label(for="password-input") Password
             toggle-password-with-tips(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser")
@@ -121,7 +121,7 @@
 
             p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
-        .validation-bar.confirm-password
+        .validation-bar.confirm-password(ng-class="{ 'error-bar': (vm.registerForm.confirmPassword.$dirty && vm.registerForm.confirmPassword.$invalid) }")
           md-input-container.md-block
             label(for="confirm-password-input") Confirm password
             toggle-confirm-password(ng-if="!vm.isSocialRegistration && !vm.ssoForced && !vm.ssoUser")
