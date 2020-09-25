@@ -31,6 +31,7 @@ import { getNewJWT } from '../../../core/auth.js'
       vm.lastname = vm.regForm.lastName
       vm.countryObj = ISO3166.getCountryObjFromCountryCode(vm.regForm.country)
     }
+    vm.loginUrl = $state.href('MEMBER_LOGIN', { activated: true })
 
     // prepares utm params, if available
     var utm = {
