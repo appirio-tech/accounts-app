@@ -43,7 +43,7 @@ import { getNewJWT } from '../../../core/auth.js'
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password'
     vm.busyMessage = BUSY_PROGRESS_MESSAGE
-    vm.retUrl = $stateParams && $stateParams.retUrl ? $stateParams.retUrl : SKILL_PICKER_URL
+    vm.retUrl = $stateParams && $stateParams.retUrl ? $stateParams.retUrl : `https://www.${DOMAIN}/start`
     if ($stateParams && $stateParams.regSource)
       vm.regSource = $stateParams.regSource
     vm.countries = ISO3166.getAllCountryObjects()
