@@ -1,10 +1,10 @@
-export const V3_JWT = 'v3jwt'
-export const AUTH0_REFRESH = 'auth0Refresh'
-export const AUTH0_JWT = 'auth0Jwt'
-export const V2_JWT = 'tcjwt'
-export const V2_SSO = 'tcsso'
-export const ZENDESK_JWT = 'zendeskJwt'
-export const V3_TEMP_JWT = 'v3tempjwt'
+export const V3_JWT = 'arenajwtv3'
+export const AUTH0_REFRESH = 'arenarefreshauth0'
+export const AUTH0_JWT = 'arenajwtauth0'
+export const V2_JWT = 'arenajwttc'
+export const V2_SSO = 'arenasso'
+export const ZENDESK_JWT = 'arenazendeskJwt'
+export const V3_TEMP_JWT = 'arenav3tempjwt'
 
 export const SCHEME = 'https'
 export const DOMAIN = process.env.DOMAIN
