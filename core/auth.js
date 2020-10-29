@@ -212,7 +212,7 @@ export function getNewJWT() {
     }
   }
 
-  const url = API_URL + '/authorizations'
+  const url = API_URL + '/authorizations/arenaauth'
   const config = {
     method: 'POST',
     credentials: 'include',
