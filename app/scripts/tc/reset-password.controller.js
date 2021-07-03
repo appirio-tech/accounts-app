@@ -28,7 +28,7 @@ import { DOMAIN } from '../../../core/constants.js'
     vm.sendLink = function() {
       if (vm.generateTokenForm.$valid) {
         vm.loading = true
-        var resetPasswordUrlPrefix = $state.href('MEMBER_RESET_PASSWORD', {}, { absolute: true })
+        var resetPasswordUrlPrefix = $state.href('home', {}, { absolute: true }) + '#!' + $state.href('MEMBER_RESET_PASSWORD')
         sendResetEmail(vm.email, resetPasswordUrlPrefix).then(
           function() {
             console.log('success')
