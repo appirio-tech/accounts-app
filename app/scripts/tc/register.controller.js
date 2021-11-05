@@ -168,7 +168,7 @@ import { getNewJWT } from '../../../core/auth.js'
       var redirectURL = vm.retUrl ? vm.retUrl : SKILL_PICKER_URL;
 
       var afterActivationURL;
-      afterActivationURL = vm.retUrl ? vm.retUrl : `https://www.${DOMAIN}/start`;
+      afterActivationURL = vm.retUrl ? vm.retUrl : `https://platform.${DOMAIN}/onboard`;
       if (vm.regSource && vm.regSource === 'tcBusiness') {
         afterActivationURL = `https://connect.${DOMAIN}/`
       }
